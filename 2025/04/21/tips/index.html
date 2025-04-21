@@ -1,0 +1,485 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>tips | TTDB's blog</title><meta name="author" content="TTDB"><meta name="copyright" content="TTDB"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="前面我们已经把Mybatis、Spring和SpringMVC三个框架进行了学习 统一结果封装后端开发避免不了要发送数据返回前端，但接口众多，业务也多，所以各种不一，需要对这个统一封装  为了封装返回的结果数据：创建结果模型类，封装数据到data属性中 我们可以设置data的数据类型为Object,这样data中就可以放任意的结果类型了，包括但不限于上面的boolean、对象、集合对象   为了封">
+<meta property="og:type" content="article">
+<meta property="og:title" content="tips">
+<meta property="og:url" content="http://example.com/2025/04/21/tips/index.html">
+<meta property="og:site_name" content="TTDB&#39;s blog">
+<meta property="og:description" content="前面我们已经把Mybatis、Spring和SpringMVC三个框架进行了学习 统一结果封装后端开发避免不了要发送数据返回前端，但接口众多，业务也多，所以各种不一，需要对这个统一封装  为了封装返回的结果数据：创建结果模型类，封装数据到data属性中 我们可以设置data的数据类型为Object,这样data中就可以放任意的结果类型了，包括但不限于上面的boolean、对象、集合对象   为了封">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/img/ab271877b6d5d966b6bcd9cda1623d51.jpeg">
+<meta property="article:published_time" content="2025-04-21T06:26:10.370Z">
+<meta property="article:modified_time" content="2025-04-21T06:33:07.235Z">
+<meta property="article:author" content="TTDB">
+<meta property="article:tag" content="TTDB">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/img/ab271877b6d5d966b6bcd9cda1623d51.jpeg"><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "tips",
+  "url": "http://example.com/2025/04/21/tips/",
+  "image": "http://example.com/img/ab271877b6d5d966b6bcd9cda1623d51.jpeg",
+  "datePublished": "2025-04-21T06:26:10.370Z",
+  "dateModified": "2025-04-21T06:33:07.235Z",
+  "author": [
+    {
+      "@type": "Person",
+      "name": "TTDB",
+      "url": "http://example.com/"
+    }
+  ]
+}</script><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://example.com/2025/04/21/tips/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//fonts.googleapis.com" crossorigin=""/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Titillium+Web&amp;display=swap" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: {"defaultEncoding":2,"translateDelay":0,"msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"簡"},
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":false},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: {"chs_to_cht":"已切换为繁体中文","cht_to_chs":"已切换为简体中文","day_to_night":"已切换为深色模式","night_to_day":"已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#1f1f1f","position":"bottom-left"},
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: true,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'tips',
+  isHighlightShrink: false,
+  isToc: true,
+  pageType: 'post'
+}</script><meta name="generator" content="Hexo 7.3.0"></head><body><div id="web_bg" style="background-image: url(https://i.loli.net/2019/09/09/5oDRkWVKctx2b6A.png);"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/img/ab271877b6d5d966b6bcd9cda1623d51.jpeg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">15</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">3</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">1</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fas fa-list"></i><span> List</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> Music</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> Movie</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> Link</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg fixed" id="page-header" style="background-image: url(/img/e93f858d798bea4fbdee83331ff488c.jpg);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">TTDB's blog</span></a><a class="nav-page-title" href="/"><span class="site-name">tips</span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fas fa-list"></i><span> List</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> Music</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> Movie</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> Link</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">tips</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2025-04-21T06:26:10.370Z" title="发表于 2025-04-21 14:26:10">2025-04-21</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2025-04-21T06:33:07.235Z" title="更新于 2025-04-21 14:33:07">2025-04-21</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><p>前面我们已经把<code>Mybatis</code>、<code>Spring</code>和<code>SpringMVC</code>三个框架进行了学习</p>
+<h1 id="统一结果封装"><a href="#统一结果封装" class="headerlink" title="统一结果封装"></a>统一结果封装</h1><p>后端开发避免不了要发送数据返回前端，但接口众多，业务也多，所以各种不一，需要对这个统一封装</p>
+<ul>
+<li>为了封装返回的结果数据：创建结果模型类，封装数据到data属性中<ul>
+<li>我们可以设置data的数据类型为Object,这样data中就可以放任意的结果类型了，包括但不限于上面的boolean、对象、集合对象</li>
+</ul>
+</li>
+<li>为了封装返回的数据是何种操作，以及是否操作成功：封装操作结果到code属性中<ul>
+<li>例如增删改操作返回的都是tue，那我们怎么分辨这个true到底是增还是删还是改呢？我们就通过这个code来区分</li>
+</ul>
+</li>
+<li>操作失败后，需要封装返回错误信息提示给用户：封装特殊消息到message(msg)属性中<ul>
+<li>例如查询或删除的目标不存在，会返回ul,那么此时我们需要提示查询&#x2F;删除的目标不存在，请重试！</li>
+</ul>
+</li>
+</ul>
+<p>三种返回：</p>
+<ul>
+<li>规则可以自己定</li>
+<li>这里前三位是固定的</li>
+<li>第四位表示不同的操作</li>
+<li>末位表示成功&#x2F;失败，1成功，0失败</li>
+</ul>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//boolean</span></span><br><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;code&quot;</span><span class="punctuation">:</span><span class="number">20011</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;data&quot;</span><span class="punctuation">:</span><span class="literal"><span class="keyword">true</span></span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//对象</span></span><br><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;code&quot;</span><span class="punctuation">:</span><span class="number">20020</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;data&quot;</span><span class="punctuation">:</span><span class="literal"><span class="keyword">null</span></span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;msg&quot;</span><span class="punctuation">:</span><span class="string">&quot;数据查询失败，请重试！&quot;</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//集合</span></span><br><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;code&quot;</span><span class="punctuation">:</span><span class="number">20031</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;data&quot;</span><span class="punctuation">:</span><span class="punctuation">[</span></span><br><span class="line">        <span class="punctuation">&#123;</span></span><br><span class="line">            <span class="attr">&quot;id&quot;</span><span class="punctuation">:</span><span class="number">1</span><span class="punctuation">,</span></span><br><span class="line">            <span class="attr">&quot;type&quot;</span><span class="punctuation">:</span><span class="string">&quot;计算机理论&quot;</span><span class="punctuation">,</span></span><br><span class="line">            <span class="attr">&quot;name&quot;</span><span class="punctuation">:</span><span class="string">&quot;Spring实战 第5版&quot;</span><span class="punctuation">,</span></span><br><span class="line">            <span class="attr">&quot;description&quot;</span><span class="punctuation">:</span><span class="string">&quot;Spring入门经典教程&quot;</span></span><br><span class="line">        <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">        <span class="punctuation">&#123;</span></span><br><span class="line">            <span class="attr">&quot;id&quot;</span><span class="punctuation">:</span><span class="number">2</span><span class="punctuation">,</span></span><br><span class="line">            <span class="attr">&quot;type&quot;</span><span class="punctuation">:</span><span class="string">&quot;计算机理论&quot;</span><span class="punctuation">,</span></span><br><span class="line">            <span class="attr">&quot;name&quot;</span><span class="punctuation">:</span><span class="string">&quot;Spring 5核心原理与30个类手写实战&quot;</span><span class="punctuation">,</span></span><br><span class="line">            <span class="attr">&quot;description&quot;</span><span class="punctuation">:</span><span class="string">&quot;十年沉淀之作&quot;</span></span><br><span class="line">        <span class="punctuation">&#125;</span></span><br><span class="line">    <span class="punctuation">]</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+
+<p>设定统一返回结果类</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Result</span>&#123;</span><br><span class="line">	<span class="keyword">private</span> Object data;</span><br><span class="line">	<span class="keyword">private</span> Integer code;</span><br><span class="line">	<span class="keyword">private</span> String msg;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> lombok.AllArgsConstructor;</span><br><span class="line"><span class="keyword">import</span> lombok.Data;</span><br><span class="line"><span class="keyword">import</span> lombok.NoArgsConstructor;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 统一响应结果类</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">@Data</span></span><br><span class="line"><span class="meta">@NoArgsConstructor</span></span><br><span class="line"><span class="meta">@AllArgsConstructor</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Result</span> &#123;</span><br><span class="line">    <span class="comment">// 描述统一格式中的编码，用于区分操作，可以简化配置0或1表示成功失败</span></span><br><span class="line">    <span class="keyword">private</span> Integer code;</span><br><span class="line">    <span class="comment">// 描述统一格式中的数据</span></span><br><span class="line">    <span class="keyword">private</span> Object data;</span><br><span class="line">    <span class="comment">// 描述统一格式中的消息，可选属性</span></span><br><span class="line">    <span class="keyword">private</span> String msg;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 创建成功响应</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> data 数据</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span> Result</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> Result <span class="title function_">success</span><span class="params">(Object data)</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">Result</span>(<span class="number">0</span>, data, <span class="literal">null</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 创建成功响应</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> data 数据</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> msg  消息</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span> Result</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> Result <span class="title function_">success</span><span class="params">(Object data, String msg)</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">Result</span>(<span class="number">0</span>, data, msg);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 创建失败响应</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> msg 消息</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span> Result</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> Result <span class="title function_">failure</span><span class="params">(String msg)</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">Result</span>(<span class="number">1</span>, <span class="literal">null</span>, msg);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 创建失败响应</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> code 编码</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> msg  消息</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span> Result</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> Result <span class="title function_">failure</span><span class="params">(Integer code, String msg)</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">Result</span>(code, <span class="literal">null</span>, msg);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> String <span class="title function_">toString</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;Result&#123;&quot;</span> +</span><br><span class="line">                <span class="string">&quot;code=&quot;</span> + code +</span><br><span class="line">                <span class="string">&quot;, data=&quot;</span> + data +</span><br><span class="line">                <span class="string">&quot;, msg=&#x27;&quot;</span> + msg + <span class="string">&#x27;\&#x27;&#x27;</span> +</span><br><span class="line">                <span class="string">&#x27;&#125;&#x27;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="统一异常处理"><a href="#统一异常处理" class="headerlink" title="统一异常处理"></a>统一异常处理</h1><p>异常：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@GetMapping(&quot;/&#123;id&#125;&quot;)</span></span><br><span class="line"><span class="keyword">public</span> Result <span class="title function_">getById</span><span class="params">(<span class="meta">@PathVariable</span> Integer id)</span> &#123;</span><br><span class="line">    <span class="comment">//当id为1的时候，手动添加了一个错误信息</span></span><br><span class="line">    <span class="keyword">if</span> (id == <span class="number">1</span>)&#123;</span><br><span class="line">        <span class="type">int</span> <span class="variable">a</span> <span class="operator">=</span> <span class="number">1</span> / <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="type">Book</span> <span class="variable">book</span> <span class="operator">=</span> bookService.getById(id);</span><br><span class="line">    <span class="type">Integer</span> <span class="variable">code</span> <span class="operator">=</span> book == <span class="literal">null</span> ? Code.GET_ERR : Code.GET_OK;</span><br><span class="line">    <span class="type">String</span> <span class="variable">msg</span> <span class="operator">=</span> book == <span class="literal">null</span> ? <span class="string">&quot;数据查询失败，请重试！&quot;</span> : <span class="string">&quot;&quot;</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">Result</span>(code, book, msg);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>前端接收到这个信息后，和我们之前约定的格式不一致，怎么解决呢？<br>在解决问题之前，我们先来看一下异常的种类，以及出现异常的原因：</p>
+<ul>
+<li>框架内部抛出的异常：因<code>使用不合规</code>导致</li>
+<li>数据层抛出的异常：因使用<code>外部服务器故障</code>导致（例如：服务器访问超时）</li>
+<li>业务层抛出的异常：因<code>业务逻辑书写错误</code>导致（例如：遍历业务书写操作，导致索引越界异常等）</li>
+<li>表现层抛出的异常：因<code>数据收集</code>、<code>校验</code>等规则导致（例如：不匹配的数据类型间转换导致异常）</li>
+<li>工具类抛出的异常：因工具类<code>书写不严谨</code>，<code>健壮性不足</code>导致（例如：必要时放的连接，长时间未释放等）</li>
+</ul>
+<p>了解完上面这些出现<code>异常的位置</code>，我们发现，在我们开发的<code>任何一个位置</code>都可能会出现异常，而且这些异常是<code>不能避免的</code>，所以我们就需要对这些异常来<code>进行处理</code>。</p>
+<p>思考</p>
+<ol>
+<li>各个层级均出现异常，那么异常处理代码要写在哪一层？<ul>
+<li>所有的异常均抛出到表现层进行处理</li>
+</ul>
+</li>
+<li>异常的种类很多，表现层如何将所有的异常都处理到呢？<ul>
+<li>异常分类</li>
+</ul>
+</li>
+<li>表现层处理异常，每个方法中单独书写，代码书写两巨大，且意义不强，如何解决呢？<ul>
+<li>AOP</li>
+</ul>
+</li>
+</ol>
+<p>对于上面这些问题以及解决方案，SpringMVC已经为我们提供了一套了：</p>
+<p> 异常处理器：</p>
+<ul>
+<li><p>集中的、统一的处理项目中出现的异常</p>
+</li>
+<li><pre><code class="language-java">@RestControllerAdvice
+public class ProjectExceptionAdvice &#123;
+    @ExceptionHandler(Exception.class)
+    public Result doException(Exception ex) &#123;
+        return new Result(666, null);
+  
+   &#125;
+&#125;
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">### 异常处理器的使用</span><br><span class="line"></span><br><span class="line">在 Spring Boot 应用中，异常处理是一个重要的环节，它可以帮助我们优雅地处理运行时出现的错误，并给用户友好的反馈。Spring Boot 提供了多种方式来处理异常，其中最常用的是使用 `@ControllerAdvice` 或 `@RestControllerAdvice` 注解来创建全局异常处理器。</span><br><span class="line"></span><br><span class="line">### 1. 创建全局异常处理器</span><br><span class="line"></span><br><span class="line">你可以创建一个类，使用 `@ControllerAdvice` 或 `@RestControllerAdvice` 注解，来定义全局异常处理逻辑。`@RestControllerAdvice` 是 `@ControllerAdvice` 的特化，它自动将返回的对象序列化为 JSON 格式，适用于 RESTful API。</span><br><span class="line"></span><br><span class="line">```java</span><br><span class="line">import org.springframework.http.HttpStatus;</span><br><span class="line">import org.springframework.http.ResponseEntity;</span><br><span class="line">import org.springframework.web.bind.annotation.ControllerAdvice;</span><br><span class="line">import org.springframework.web.bind.annotation.ExceptionHandler;</span><br><span class="line">import org.springframework.web.bind.annotation.ResponseBody;</span><br><span class="line">import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;</span><br><span class="line"></span><br><span class="line">@ControllerAdvice</span><br><span class="line">public class GlobalExceptionHandler extends ResponseEntityExceptionHandler &#123;</span><br><span class="line"></span><br><span class="line">    // 处理自定义异常</span><br><span class="line">    @ExceptionHandler(MyCustomException.class)</span><br><span class="line">    public ResponseEntity&lt;Result&gt; handleCustomException(MyCustomException ex) &#123;</span><br><span class="line">        Result result = new Result(ex.getErrorCode(), ex.getMessage());</span><br><span class="line">        return new ResponseEntity&lt;&gt;(result, HttpStatus.BAD_REQUEST);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    // 处理所有未捕获的异常</span><br><span class="line">    @ExceptionHandler(Exception.class)</span><br><span class="line">    public ResponseEntity&lt;Result&gt; handleAllExceptions(Exception ex) &#123;</span><br><span class="line">        Result result = new Result(-1, &quot;Internal Server Error: &quot; + ex.getMessage());</span><br><span class="line">        return new ResponseEntity&lt;&gt;(result, HttpStatus.INTERNAL_SERVER_ERROR);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+### 2. 定义自定义异常
+
+你可以定义自己的异常类，使其包含错误码和错误消息等信息。
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">MyCustomException</span> <span class="keyword">extends</span> <span class="title class_">RuntimeException</span> &#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="type">int</span> errorCode;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="title function_">MyCustomException</span><span class="params">(<span class="type">int</span> errorCode, String message)</span> &#123;</span><br><span class="line">        <span class="built_in">super</span>(message);</span><br><span class="line">        <span class="built_in">this</span>.errorCode = errorCode;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="type">int</span> <span class="title function_">getErrorCode</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> errorCode;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+### 3. 使用异常处理器
+
+在你的业务逻辑中，你可以抛出自定义异常，这些异常将被全局异常处理器捕获并处理。
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> org.springframework.web.bind.annotation.GetMapping;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.bind.annotation.RestController;</span><br><span class="line"></span><br><span class="line"><span class="meta">@RestController</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">MyController</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@GetMapping(&quot;/throwException&quot;)</span></span><br><span class="line">    <span class="keyword">public</span> String <span class="title function_">throwException</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> <span class="title class_">MyCustomException</span>(<span class="number">1001</span>, <span class="string">&quot;Custom error message&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+### 4. 配置异常处理器的优先级
+
+如果你有多个异常处理器，Spring Boot 会根据注解的顺序来决定优先级。你可以通过 `@Order` 或 `@Priority` 注解来显式设置优先级。
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> org.springframework.core.annotation.Order;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.bind.annotation.ControllerAdvice;</span><br><span class="line"></span><br><span class="line"><span class="meta">@ControllerAdvice</span></span><br><span class="line"><span class="meta">@Order(1)</span> <span class="comment">// 设置优先级</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">FirstExceptionHandler</span> &#123;</span><br><span class="line">    <span class="comment">// 异常处理逻辑</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+### 5. 使用 `@ExceptionHandler` 注解
+
+你可以在控制器方法中使用 `@ExceptionHandler` 注解来处理特定的异常。
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> org.springframework.web.bind.annotation.ExceptionHandler;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.bind.annotation.GetMapping;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.bind.annotation.RestController;</span><br><span class="line"></span><br><span class="line"><span class="meta">@RestController</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">MyController</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@GetMapping(&quot;/throwException&quot;)</span></span><br><span class="line">    <span class="keyword">public</span> String <span class="title function_">throwException</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> <span class="title class_">MyCustomException</span>(<span class="number">1001</span>, <span class="string">&quot;Custom error message&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@ExceptionHandler(MyCustomException.class)</span></span><br><span class="line">    <span class="keyword">public</span> ResponseEntity&lt;Result&gt; <span class="title function_">handleCustomException</span><span class="params">(MyCustomException ex)</span> &#123;</span><br><span class="line">        <span class="type">Result</span> <span class="variable">result</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Result</span>(ex.getErrorCode(), ex.getMessage());</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">ResponseEntity</span>&lt;&gt;(result, HttpStatus.BAD_REQUEST);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</code></pre>
+</li>
+</ul>
+<h1 id="拦截器"><a href="#拦截器" class="headerlink" title="拦截器"></a>拦截器</h1><p>在 Spring Boot 应用中，拦截器（Interceptor）是一种在请求处理的各个阶段执行特定逻辑的组件。拦截器可以用于日志记录、身份验证、权限检查、请求修改等。Spring Boot 通过 <code>HandlerInterceptor</code> 接口提供了拦截器的实现机制。</p>
+<h3 id="1-创建拦截器"><a href="#1-创建拦截器" class="headerlink" title="1. 创建拦截器"></a>1. 创建拦截器</h3><p>首先，你需要创建一个拦截器类，实现 <code>HandlerInterceptor</code> 接口。该接口包含三个方法：</p>
+<ul>
+<li><code>preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)</code>：在请求处理之前被调用（Controller 方法调用之前）。</li>
+<li><code>postHandle(HttpServletRequest request, HttpServletResponse response, Object handler, ModelAndView modelAndView)</code>：在请求处理之后，但在视图被渲染之前被调用（Controller 方法调用之后）。</li>
+<li><code>afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex)</code>：在整个请求结束之后被调用，也就是在 <code>DispatcherServlet</code> 渲染了对应的视图之后执行（主要用于资源清理工作）。</li>
+</ul>
+<p>下面是一个简单的拦截器示例：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> org.springframework.stereotype.Component;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.servlet.HandlerInterceptor;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.servlet.ModelAndView;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> javax.servlet.http.HttpServletRequest;</span><br><span class="line"><span class="keyword">import</span> javax.servlet.http.HttpServletResponse;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Component</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">MyInterceptor</span> <span class="keyword">implements</span> <span class="title class_">HandlerInterceptor</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="type">boolean</span> <span class="title function_">preHandle</span><span class="params">(HttpServletRequest request, HttpServletResponse response, Object handler)</span> <span class="keyword">throws</span> Exception &#123;</span><br><span class="line">        <span class="comment">// 在请求处理之前进行调用（Controller方法调用之前）</span></span><br><span class="line">        System.out.println(<span class="string">&quot;preHandle&quot;</span>);</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">true</span>; <span class="comment">// 返回true，继续流程；返回false，中断流程</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">postHandle</span><span class="params">(HttpServletRequest request, HttpServletResponse response, Object handler, ModelAndView modelAndView)</span> <span class="keyword">throws</span> Exception &#123;</span><br><span class="line">        <span class="comment">// 请求处理之后进行调用，但是在视图被渲染之前（Controller方法调用之后）</span></span><br><span class="line">        System.out.println(<span class="string">&quot;postHandle&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">afterCompletion</span><span class="params">(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex)</span> <span class="keyword">throws</span> Exception &#123;</span><br><span class="line">        <span class="comment">// 在整个请求结束之后被调用，也就是在DispatcherServlet渲染了对应的视图之后执行（主要用于资源清理工作）</span></span><br><span class="line">        System.out.println(<span class="string">&quot;afterCompletion&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-注册拦截器"><a href="#2-注册拦截器" class="headerlink" title="2. 注册拦截器"></a>2. 注册拦截器</h3><p>创建好拦截器之后，你需要注册它，以便 Spring Boot 能够使用它。你可以通过实现 <code>WebMvcConfigurer</code> 接口来注册拦截器。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> org.springframework.beans.factory.annotation.Autowired;</span><br><span class="line"><span class="keyword">import</span> org.springframework.context.annotation.Configuration;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.servlet.config.annotation.InterceptorRegistry;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.servlet.config.annotation.WebMvcConfigurer;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Configuration</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">WebConfig</span> <span class="keyword">implements</span> <span class="title class_">WebMvcConfigurer</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    <span class="keyword">private</span> MyInterceptor myInterceptor;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">addInterceptors</span><span class="params">(InterceptorRegistry registry)</span> &#123;</span><br><span class="line">        registry.addInterceptor(myInterceptor)</span><br><span class="line">                .addPathPatterns(<span class="string">&quot;/**&quot;</span>) <span class="comment">// 拦截所有请求</span></span><br><span class="line">                .excludePathPatterns(<span class="string">&quot;/login&quot;</span>, <span class="string">&quot;/register&quot;</span>); <span class="comment">// 排除登录和注册请求</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="3-使用拦截器"><a href="#3-使用拦截器" class="headerlink" title="3. 使用拦截器"></a>3. 使用拦截器</h3><p>现在，拦截器已经注册并生效。你可以在拦截器中实现各种逻辑，例如：</p>
+<ul>
+<li><strong>日志记录</strong>：记录请求的详细信息，包括请求时间、请求路径、请求参数等。</li>
+<li><strong>身份验证</strong>：检查用户是否已经登录，如果没有登录则重定向到登录页面。</li>
+<li><strong>权限检查</strong>：检查用户是否有权限访问特定的资源。</li>
+<li><strong>请求修改</strong>：修改请求参数或请求头。</li>
+</ul>
+<h3 id="示例：身份验证拦截器"><a href="#示例：身份验证拦截器" class="headerlink" title="示例：身份验证拦截器"></a>示例：身份验证拦截器</h3><p>以下是一个简单的身份验证拦截器示例：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> org.springframework.stereotype.Component;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.servlet.HandlerInterceptor;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.servlet.ModelAndView;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> javax.servlet.http.HttpServletRequest;</span><br><span class="line"><span class="keyword">import</span> javax.servlet.http.HttpServletResponse;</span><br><span class="line"><span class="keyword">import</span> javax.servlet.http.HttpSession;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Component</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">AuthInterceptor</span> <span class="keyword">implements</span> <span class="title class_">HandlerInterceptor</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="type">boolean</span> <span class="title function_">preHandle</span><span class="params">(HttpServletRequest request, HttpServletResponse response, Object handler)</span> <span class="keyword">throws</span> Exception &#123;</span><br><span class="line">        <span class="type">HttpSession</span> <span class="variable">session</span> <span class="operator">=</span> request.getSession();</span><br><span class="line">        <span class="keyword">if</span> (session.getAttribute(<span class="string">&quot;user&quot;</span>) == <span class="literal">null</span>) &#123;</span><br><span class="line">            response.sendRedirect(<span class="string">&quot;/login&quot;</span>);</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>然后在配置类中注册这个拦截器：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> org.springframework.beans.factory.annotation.Autowired;</span><br><span class="line"><span class="keyword">import</span> org.springframework.context.annotation.Configuration;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.servlet.config.annotation.InterceptorRegistry;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.servlet.config.annotation.WebMvcConfigurer;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Configuration</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">WebConfig</span> <span class="keyword">implements</span> <span class="title class_">WebMvcConfigurer</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    <span class="keyword">private</span> AuthInterceptor authInterceptor;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">addInterceptors</span><span class="params">(InterceptorRegistry registry)</span> &#123;</span><br><span class="line">        registry.addInterceptor(authInterceptor)</span><br><span class="line">                .addPathPatterns(<span class="string">&quot;/**&quot;</span>) <span class="comment">// 拦截所有请求</span></span><br><span class="line">                .excludePathPatterns(<span class="string">&quot;/login&quot;</span>, <span class="string">&quot;/register&quot;</span>, <span class="string">&quot;/static/**&quot;</span>); <span class="comment">// 排除登录、注册和静态资源请求</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="搭建网关"><a href="#搭建网关" class="headerlink" title="搭建网关"></a>搭建网关</h1><p>使用SpringCloudGateway作为网关，创建网关模块</p>
+<p><img src="/2025/04/21/tips/image-20250421102406780.png" alt="image-20250421102406780"></p>
+<p>指定父工程，添加依赖</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!--网关--&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.cloud<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-cloud-starter-gateway<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>网关的yaml配置：</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">server:</span></span><br><span class="line">  <span class="attr">port:</span> <span class="number">53010</span> <span class="comment">## 网关端口</span></span><br><span class="line"><span class="attr">spring:</span></span><br><span class="line">  <span class="attr">cloud:</span></span><br><span class="line">    <span class="attr">gateway:</span></span><br><span class="line">      <span class="attr">routes:</span> </span><br><span class="line">        <span class="bullet">-</span> <span class="attr">id:</span> <span class="string">content-api</span> <span class="comment">## 路由id，自定义，只要唯一即可</span></span><br><span class="line">          <span class="attr">uri:</span> <span class="string">lb://content-api</span> <span class="comment">## 路由的目标地址 lb就是负载均衡，后面跟服务名称</span></span><br><span class="line">          <span class="attr">predicates:</span> <span class="comment">## 路由断言，也就是判断请求是否符合路由规则的条件</span></span><br><span class="line">            <span class="bullet">-</span> <span class="string">Path=/content/**</span> <span class="comment">## 这个是按照路径匹配，只要以/content/开头就符合要求</span></span><br><span class="line">        <span class="bullet">-</span> <span class="attr">id:</span> <span class="string">system-api</span></span><br><span class="line">          <span class="attr">uri:</span> <span class="string">lb://system-api</span></span><br><span class="line">          <span class="attr">predicates:</span></span><br><span class="line">            <span class="bullet">-</span> <span class="string">Path=/system/**</span></span><br></pre></td></tr></table></figure>
+
+<p>前端工程配置：</p>
+<p>这里使用localhost启动，本地如果云端就用云端地址</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">&quot;dev&quot;:</span> &#123;</span><br><span class="line">    <span class="attr">&quot;host&quot;:</span> <span class="string">&quot;localhost:53010&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;content_host&quot;:</span> <span class="string">&quot;localhost:53040&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;system_host&quot;:</span> <span class="string">&quot;localhost:53110&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;media_host&quot;:</span> <span class="string">&quot;localhost:53050&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;cache_host&quot;:</span> <span class="string">&quot;localhost:53035&quot;</span>,</span><br><span class="line"><span class="string">+</span>   <span class="attr">&quot;gateway_host&quot;:</span> <span class="string">&quot;localhost:53010&quot;</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="统一异常处理-1"><a href="#统一异常处理-1" class="headerlink" title="统一异常处理"></a>统一异常处理</h1><p>异常：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@GetMapping(&quot;/&#123;id&#125;&quot;)</span></span><br><span class="line"><span class="keyword">public</span> Result <span class="title function_">getById</span><span class="params">(<span class="meta">@PathVariable</span> Integer id)</span> &#123;</span><br><span class="line">    <span class="comment">//当id为1的时候，手动添加了一个错误信息</span></span><br><span class="line">    <span class="keyword">if</span> (id == <span class="number">1</span>)&#123;</span><br><span class="line">        <span class="type">int</span> <span class="variable">a</span> <span class="operator">=</span> <span class="number">1</span> / <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="type">Book</span> <span class="variable">book</span> <span class="operator">=</span> bookService.getById(id);</span><br><span class="line">    <span class="type">Integer</span> <span class="variable">code</span> <span class="operator">=</span> book == <span class="literal">null</span> ? Code.GET_ERR : Code.GET_OK;</span><br><span class="line">    <span class="type">String</span> <span class="variable">msg</span> <span class="operator">=</span> book == <span class="literal">null</span> ? <span class="string">&quot;数据查询失败，请重试！&quot;</span> : <span class="string">&quot;&quot;</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">Result</span>(code, book, msg);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>前端接收到这个信息后，和我们之前约定的格式不一致，怎么解决呢？<br>在解决问题之前，我们先来看一下异常的种类，以及出现异常的原因：</p>
+<ul>
+<li>框架内部抛出的异常：因<code>使用不合规</code>导致</li>
+<li>数据层抛出的异常：因使用<code>外部服务器故障</code>导致（例如：服务器访问超时）</li>
+<li>业务层抛出的异常：因<code>业务逻辑书写错误</code>导致（例如：遍历业务书写操作，导致索引越界异常等）</li>
+<li>表现层抛出的异常：因<code>数据收集</code>、<code>校验</code>等规则导致（例如：不匹配的数据类型间转换导致异常）</li>
+<li>工具类抛出的异常：因工具类<code>书写不严谨</code>，<code>健壮性不足</code>导致（例如：必要时放的连接，长时间未释放等）</li>
+</ul>
+<p>了解完上面这些出现<code>异常的位置</code>，我们发现，在我们开发的<code>任何一个位置</code>都可能会出现异常，而且这些异常是<code>不能避免的</code>，所以我们就需要对这些异常来<code>进行处理</code>。</p>
+<p>思考</p>
+<ol>
+<li>各个层级均出现异常，那么异常处理代码要写在哪一层？<ul>
+<li>所有的异常均抛出到表现层进行处理</li>
+</ul>
+</li>
+<li>异常的种类很多，表现层如何将所有的异常都处理到呢？<ul>
+<li>异常分类</li>
+</ul>
+</li>
+<li>表现层处理异常，每个方法中单独书写，代码书写两巨大，且意义不强，如何解决呢？<ul>
+<li>AOP</li>
+</ul>
+</li>
+</ol>
+<p>对于上面这些问题以及解决方案，SpringMVC已经为我们提供了一套了：</p>
+<h2 id="全局异常处理器"><a href="#全局异常处理器" class="headerlink" title="全局异常处理器"></a>全局异常处理器</h2><p>既然是全局的就在base工程中添加</p>
+<p>添加依赖</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!--全局异常类依赖包--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-web<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-starter-log4j2<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>定义一个枚举类，枚举一些通用的异常信息</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">* <span class="doctag">@description</span> 通用错误信息</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">enum</span> <span class="title class_">CommonError</span> &#123;</span><br><span class="line">    UNKOWN_ERROR(<span class="string">&quot;执行过程异常，请重试&quot;</span>),</span><br><span class="line">    PARAS_ERROR(<span class="string">&quot;非法参数&quot;</span>),</span><br><span class="line">    OBJECT_NULL(<span class="string">&quot;对象为空&quot;</span>),</span><br><span class="line">    QUERY_NULL(<span class="string">&quot;查询结果为空&quot;</span>),</span><br><span class="line">    REQUEST_NULL(<span class="string">&quot;请求参数为空&quot;</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> String errMessage;</span><br><span class="line"></span><br><span class="line"><span class="comment">//这一行也可以用@Getter</span></span><br><span class="line">    <span class="keyword">public</span> String <span class="title function_">getErrMessage</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> errMessage;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    CommonError(String errMessage) &#123;</span><br><span class="line">        <span class="built_in">this</span>.errMessage = errMessage;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>自定义异常类型</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">* <span class="doctag">@description</span> 学成在线项目异常类</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">XueChengPlusException</span> <span class="keyword">extends</span> <span class="title class_">RuntimeException</span> &#123;</span><br><span class="line">    <span class="keyword">private</span> String errMessage;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> String <span class="title function_">getErrMessage</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> errMessage;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//无参,</span></span><br><span class="line">    <span class="keyword">public</span> <span class="title function_">XueChengPlusException</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="built_in">super</span>();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//构造函数有参</span></span><br><span class="line">    <span class="keyword">public</span> <span class="title function_">XueChengPlusException</span><span class="params">(String errMessage)</span> &#123;</span><br><span class="line">        <span class="built_in">super</span>(errMessage);</span><br><span class="line">        <span class="built_in">this</span>.errMessage = errMessage;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 通过 CommonError 快速构建异常</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">cast</span><span class="params">(CommonError commonError)</span> &#123;</span><br><span class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> <span class="title class_">XueChengPlusException</span>(commonError.getErrMessage());</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">cast</span><span class="params">(String errMessage)</span> &#123;</span><br><span class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> <span class="title class_">XueChengPlusException</span>(errMessage);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>响应用户的统一类型</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Data</span></span><br><span class="line"><span class="meta">@NoArgsConstructor</span></span><br><span class="line"><span class="meta">@AllArgsConstructor</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">RestErrorResponse</span> <span class="keyword">implements</span> <span class="title class_">Serializable</span> &#123;</span><br><span class="line">    <span class="keyword">private</span> String errMessage;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>全局异常处理器</p>
+<ul>
+<li><p>从Spring 3.0-Spring 3.2版本之间，对Spring架构和SpringMVC的Controller的异常捕获提供了相应的异常处理</p>
+<ul>
+<li><code>@ExceptionHandler</code>：<code>Spring3.0</code>提供的标识，在方法上或类上的注解，用于表明方法的处理异常类型</li>
+<li><code>@ControllerAdvice</code>：<code>Spring3.2</code>提供的新注解，用于增强SpringMVC中的Controller。通常与<code>@ExceptionHandler</code>结合使用，来处理SpringMVC的异常信息</li>
+<li><code>@ResponseStatus</code>：<code>Spring3.0</code>提供的标识在方法或类上的注解，用状态码和应返回的原因标记方法或异常类。调用处理程序方法时，状态码将应用于HTTP响应</li>
+</ul>
+</li>
+<li><p>通过上面的注解便可实现微服务全局异常处理，具体代码如下</p>
+</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">* <span class="doctag">@description</span> 全局异常处理器</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="meta">@Slf4j</span></span><br><span class="line"><span class="meta">@ControllerAdvice</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">GlobalExceptionHandler</span> &#123;</span><br><span class="line">    <span class="meta">@ResponseBody</span></span><br><span class="line">    <span class="meta">@ExceptionHandler(XueChengPlusException.class)</span></span><br><span class="line">    <span class="meta">@ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)</span> <span class="comment">// 该异常枚举错误码为500，</span></span><br><span class="line">    <span class="keyword">public</span> RestErrorResponse <span class="title function_">customException</span><span class="params">(XueChengPlusException exception)</span> &#123;</span><br><span class="line">        log.error(<span class="string">&quot;系统异常：&#123;&#125;&quot;</span>, exception.getErrMessage());</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">RestErrorResponse</span>(exception.getErrMessage());</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@ResponseBody</span></span><br><span class="line">    <span class="meta">@ExceptionHandler(Exception.class)</span></span><br><span class="line">    <span class="meta">@ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)</span></span><br><span class="line">    <span class="keyword">public</span> RestErrorResponse <span class="title function_">exception</span><span class="params">(Exception exception)</span> &#123;</span><br><span class="line">        log.error(<span class="string">&quot;系统异常：&#123;&#125;&quot;</span>, exception.getMessage());</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">RestErrorResponse</span>(exception.getMessage());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>使用：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (price == <span class="literal">null</span> || price.floatValue() &lt;= <span class="number">0</span>) &#123;</span><br><span class="line">    XueChengPlusException.cast(<span class="string">&quot;课程设置了收费，价格不能为空，且必须大于0&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="面试"><a href="#面试" class="headerlink" title="面试"></a>面试</h3><ol>
+<li>系统如何处理异常？<ul>
+<li>我们自定义一个统一的异常处理器去捕获并处理异常</li>
+<li>使用控制器增强注解@ControllerAdvice（也可以用@RestControllerAdvice）和异常处理注解@ExceptionHandler来实现</li>
+</ul>
+</li>
+<li>如何处理自定义异常？<ul>
+<li>程序在编写代码时，根据校验结果主动抛出自定义异常类对象，抛出异常时指定详细的异常信息，异常处理器捕获异常信息记录、异常日志，并响应给用户</li>
+</ul>
+</li>
+<li>如何处理未知异常？<ul>
+<li>接口执行过程中的一些运行时异常也会被异常处理器统一捕获，记录异常日志，统一响应给用户500错误</li>
+<li>在异常处理其中还可以对某个异常类型进行单独处理（使用@ExceptionHandler来声明要捕获的异常类型）</li>
+</ul>
+</li>
+</ol>
+<h1 id="用户认证"><a href="#用户认证" class="headerlink" title="用户认证"></a>用户认证</h1><p>SpringSecurity快速构建认证授权功能</p>
+<h4 id="统一认证"><a href="#统一认证" class="headerlink" title="统一认证"></a>统一认证</h4><ul>
+<li><p>项目包括学生、学习机构的老师、平台运营人员三类用户，三类用户将使用统一的认证入口</p>
+</li>
+<li><p>用户输入账号密码提交认证，认证通过后继续操作</p>
+</li>
+<li><p>认证通过由认证服务想用户颁发令牌，相当于访问系统的通行证，用户拿着令牌去访问系统的资源</p>
+</li>
+</ul>
+<h4 id="单点登录"><a href="#单点登录" class="headerlink" title="单点登录"></a>单点登录</h4><ul>
+<li><p>本项目基于微服务架构构建，微服务包括：内容管理服务、媒资管理服务、系统管理服务等。</p>
+</li>
+<li><p>为了提高用户的体验性，用户只需要依次认证，便可以在多个拥有访问权限的系统中访问，这个功能叫单点登录</p>
+</li>
+<li><p>单点登录（Single Sign On），简称为 SSO，是目前比较流行的企业业务整合的解决方案之一。SSO的定义是在多个应用系统中，用户只需要登录一次就可以访问所有相互信任的应用系统。</p>
+</li>
+</ul>
+<h4 id="第三方认证"><a href="#第三方认证" class="headerlink" title="第三方认证"></a>第三方认证</h4><ul>
+<li>为了提高用户体验，很多网站都具有扫码登录的功能，例如微信扫码登录、QQ扫码登录等</li>
+<li>扫码登录的好处是用户不用输入账号密码，操作简便，而且有利于用户信息的共享。</li>
+<li>互联网的优势就是资源共享，用户也是一种资源，对于一个新网站，如果让用户去注册是很困难的，如果提供了微信扫码登录，将省去用户的注册成本，是一种非常有效的推广方式。</li>
+<li>微信扫码登录其中的原理正是使用了第三方认证</li>
+</ul>
+<h2 id="OAuth2"><a href="#OAuth2" class="headerlink" title="OAuth2"></a>OAuth2</h2><ul>
+<li>前面我们提到的微信扫码认证，是一种第三方认证方式，这种认证方式是基于OAuth2协议实现的</li>
+<li>OAuth协议为用户资源的授权提供了一个安全的、开放而又简易的标准。</li>
+<li>同时，任何第三方都可以使用OAuth认证服务，任何服务提供商都可以实现自身的OAuth认证服务，因而OAuth是开放的。</li>
+<li>业界提供了OAuth的多种实现，如PHP、JavaScript、Java、Ruby等各种语言开发包，大大节约了程序员的时间，因而OAuth是简易的。</li>
+<li>互联网很多服务如Open API，很多大公司如Google、Yahoo、Microsoft等都提供了OAuth认证服务，这些都足以说明OAuth标准逐渐成为开放资源授权的标准</li>
+<li>OAuth协议目前发展到2.0版本，1.0版本过于复杂，2.0版本已得到广泛应用<ul>
+<li>参考：<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/OAuth/7153134?fr=aladdin">https://baike.baidu.com/item/OAuth/7153134?fr=aladdin</a></li>
+<li>OAuth协议：<a target="_blank" rel="noopener" href="https://tools.ietf.org/html/rfc6749">https://tools.ietf.org/html/rfc6749</a></li>
+</ul>
+</li>
+<li>下面分析一个OAuth2认证的例子，微信认证扫码登录的过程：<br><img src="/2025/04/21/tips/image-20250421112448359.png" alt="image-20250421112448359"></li>
+<li>具体流程如下<ol>
+<li>用户点击微信扫码登录，微信扫码的目的是通过微信认证登录目标网站，目标网站需要从微信获取当前用户的身份信息才会让当前用户在目标网站登录成功<ul>
+<li>首先搞清楚几个概念<ul>
+<li><code>资源</code>：用户信息，在微信中存储</li>
+<li><code>资源拥有者</code>：用户是用户信息资源的拥有者</li>
+<li><code>认证服务</code>：微信负责认证当前用户的身份，负责为客户端颁发令牌</li>
+<li><code>客户端</code>：客户端会携带令牌请求微信获取用户信息</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>用户授权网站访问用户信息<ul>
+<li>资源拥有者扫描二维码，表示资源拥有者请求微信进行认证，微信认证通过向用户手机返回授权页面（让你确认登录）</li>
+<li>询问用户是否授权目标网站访问自己在微信的用户信息，用户点击（确认登录）表示同意授权，微信认证服务器会颁发一个授权码给目标网站</li>
+<li>只有资源拥有者同意，微信才允许目标网站访问资源</li>
+</ul>
+</li>
+<li>目标网站获取到授权码</li>
+<li>携带授权码请求微信认证服务器，申请令牌（此交互过程用户看不到）</li>
+<li>微信认证服务器想目标网站响应令牌（此交互过程用户看不到）</li>
+<li>目标网站携带令牌请求微信服务器获取用户的基本信息</li>
+<li>资源服务器返回受保护资源，即用户信息</li>
+<li>目标网站接收到用户信息，此时用户在目标网站登录成功</li>
+</ol>
+</li>
+<li>OAuth 2.0认证流程如下<br><img src="/2025/04/21/tips/image-20250421112900905.png" alt="image-20250421112900905"></li>
+<li>OAuth 2.0包括以下角色<ol>
+<li><code>客户端</code>：本身不存储资源，需要通过资源拥有者的授权去请求资源服务器的资源，例如：手机客户端、浏览器等</li>
+<li><code>资源拥有者</code>：通常为用户，也可以是应用程序，即该资源的拥有者</li>
+<li><code>授权服务器（认证服务器）</code>：认证服务器对资源拥有者进行认证，还会对客户端进行认证并颁发令牌</li>
+<li><code>资源服务器</code>：存储资源的服务器</li>
+</ol>
+</li>
+<li>上图中<ul>
+<li><code>A</code>表示：客户端请求资源拥有者授权</li>
+<li><code>B</code>表示：资源拥有者授权客户端，即用户授权目标网站访问自己的用户信息</li>
+<li><code>C</code>表示：目标网站携带授权码请求认证</li>
+<li><code>D</code>表示：认证通过，颁发令牌</li>
+<li><code>E</code>表示：目标网站携带令牌请求资源服务器，获取资源</li>
+<li><code>F</code>表示：资源服务器校验令牌通过后，提供受保护的资源</li>
+</ul>
+</li>
+</ul>
+<h4 id="OAuth2的授权模式"><a href="#OAuth2的授权模式" class="headerlink" title="OAuth2的授权模式"></a>OAuth2的授权模式</h4><ul>
+<li>Spring Security支持OAuth2认证，OAuth2提供<strong>授权码模式、密码模式</strong>、简化模式、客户端模式等四种授权模式。前面举的微信扫码登录的例子就是基于授权码模式。</li>
+<li>这四种模式中，授权码模式和密码模式应用较多，这里使用Spring Security演示授权码模式、密码模式。</li>
+</ul>
+<p>授权码模式</p>
+<ul>
+<li><p>OAuth2的几个授权模式是根据不同的应用场景以不同的方式去获取令牌，最终目的是要获取认证服务颁发的令牌，然后通过令牌去获取资源</p>
+</li>
+<li><p>授权码模式简单理解就是使用授权码去获取令牌，要想获取令牌，首先要获取授权码，授权码的获取需要资源拥有者亲自授权同意才可以获取</p>
+</li>
+<li><p>下图是授权码模式的交互图</p>
+<p><img src="/2025/04/21/tips/image-20250421113132994.png" alt="image-20250421113132994"></p>
+<ol>
+<li>用户打开浏览器</li>
+<li>通过浏览器访问客户端</li>
+<li>通过浏览器想认证服务请求授权（用户扫描二维码）<ul>
+<li>请求授权时会携带客户端的URL，此URL为下发授权码的重定向地址</li>
+</ul>
+</li>
+<li>认证服务向资源拥有者返回授权页面</li>
+<li>资源拥有者亲自授权同意（用户点击<code>同意登录</code>）</li>
+<li>通过浏览器向认证服务发送授权同意</li>
+<li>认证服务向客户端地址重定向，并携带授权码</li>
+<li>客户端收到授权码</li>
+<li>客户端携带授权码向认证服务申请令牌</li>
+<li>认证服务向客户端颁发令牌</li>
+</ol>
+</li>
+</ul>
+<p>AuthorizationServer,Token这两</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="http://example.com">TTDB</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="http://example.com/2025/04/21/tips/">http://example.com/2025/04/21/tips/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="http://example.com" target="_blank">TTDB's blog</a>！</span></div></div><div class="tag_share"><div class="post-share"><div class="social-share" data-image="/img/ab271877b6d5d966b6bcd9cda1623d51.jpeg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><div class="post-reward"><div class="reward-button"><i class="fas fa-qrcode"></i>赞助</div><div class="reward-main"><ul class="reward-all"><li class="reward-item"><a href="/img/0ed4d56b723a59b4303d73913cf16f7.jpg" target="_blank"><img class="post-qr-code-img" src="/img/0ed4d56b723a59b4303d73913cf16f7.jpg" alt="wechat"/></a><div class="post-qr-code-desc">wechat</div></li><li class="reward-item"><a href="/img/8151e0eadcb22bce884312f7f78e0f6.jpg" target="_blank"><img class="post-qr-code-img" src="/img/8151e0eadcb22bce884312f7f78e0f6.jpg" alt="alipay"/></a><div class="post-qr-code-desc">alipay</div></li></ul></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related" href="/2025/04/21/redis/" title="redis"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info"><div class="info-1"><div class="info-item-1">上一篇</div><div class="info-item-2">redis</div></div><div class="info-2"><div class="info-item-1">基础 Redis是一个基于内存的key-value结构数据库，非关系型数据库 基于内存存储，读写性能高 适合存储热点数据（热点商品、咨询、新闻）   官网：https://redis.io/  6379端口开放 Redis数据类型在 Redis 中一共有五种对外数据结构（暴露且又API），分别是：String (字符串)、Hash (哈希)、List (列表)、Set (集合)、ZSet (有序集合) Redis 创建了一个对象系统，上述五种对外数据结构分别有对应的对象：字符串对象、哈希对象、列表对象、集合对象、有序集合对象。Redis 是基于&lt;key, value&gt;的存储结构，每个 key 或 value 必须是上述五种对象的一种，其中 key 必须是字符串对象，如下图所示:  命令参考：Redis 命令参考 — Redis 命令参考 字符串   命令 描述    SET key value 设置指定key的值   GET key 获取指定key的值   SETEX key seconds...</div></div></div></a><a class="pagination-related" href="/2025/04/21/%E5%B8%B8%E7%94%A8%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" title=""><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-right"><div class="info-1"><div class="info-item-1">下一篇</div><div class="info-item-2"></div></div><div class="info-2"><div class="info-item-1"> title:常用数据结构（前缀和&#x2F;差分&#x2F;栈&#x2F;队列&#x2F;堆&#x2F;字典树&#x2F;并查集&#x2F;树状数组&#x2F;线段树）零、常用枚举技巧枚举右，维护左对于 双变量问题，例如两数之和 a + b &#x3D; c ，可以枚举右边的 a,转化单变量问题 枚举中间对于三个或者四个变量的问题，枚举中间的变量往往更好算 2909. 元素和最小的山形三元组 II 给定(i，j，k)找出一个山形元素 1234567891011121314151617181920class Solution &#123;    public int minimumSum(int[] nums) &#123;        int n = nums.length;        int[] suf = new int[n]; // 后缀最小值        suf[n - 1] = nums[n - 1];        for (int i = n - 2; i &gt; 1; i--) &#123;            suf[i] =...</div></div></div></a></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/img/ab271877b6d5d966b6bcd9cda1623d51.jpeg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">TTDB</div><div class="author-info-description">What can I do for you?</div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">15</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">3</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">1</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons"><a class="social-icon" href="https://github.com/HgnGoning" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a><a class="social-icon" href="mailto:hgn314134@163.com" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #4a7dbe;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%BB%9F%E4%B8%80%E7%BB%93%E6%9E%9C%E5%B0%81%E8%A3%85"><span class="toc-number">1.</span> <span class="toc-text">统一结果封装</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%BB%9F%E4%B8%80%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86"><span class="toc-number">2.</span> <span class="toc-text">统一异常处理</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%8B%A6%E6%88%AA%E5%99%A8"><span class="toc-number">3.</span> <span class="toc-text">拦截器</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E5%88%9B%E5%BB%BA%E6%8B%A6%E6%88%AA%E5%99%A8"><span class="toc-number">3.0.1.</span> <span class="toc-text">1. 创建拦截器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E6%B3%A8%E5%86%8C%E6%8B%A6%E6%88%AA%E5%99%A8"><span class="toc-number">3.0.2.</span> <span class="toc-text">2. 注册拦截器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E4%BD%BF%E7%94%A8%E6%8B%A6%E6%88%AA%E5%99%A8"><span class="toc-number">3.0.3.</span> <span class="toc-text">3. 使用拦截器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%A4%BA%E4%BE%8B%EF%BC%9A%E8%BA%AB%E4%BB%BD%E9%AA%8C%E8%AF%81%E6%8B%A6%E6%88%AA%E5%99%A8"><span class="toc-number">3.0.4.</span> <span class="toc-text">示例：身份验证拦截器</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%90%AD%E5%BB%BA%E7%BD%91%E5%85%B3"><span class="toc-number">4.</span> <span class="toc-text">搭建网关</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%BB%9F%E4%B8%80%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86-1"><span class="toc-number">5.</span> <span class="toc-text">统一异常处理</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%A8%E5%B1%80%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86%E5%99%A8"><span class="toc-number">5.1.</span> <span class="toc-text">全局异常处理器</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%9D%A2%E8%AF%95"><span class="toc-number">5.1.1.</span> <span class="toc-text">面试</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%94%A8%E6%88%B7%E8%AE%A4%E8%AF%81"><span class="toc-number">6.</span> <span class="toc-text">用户认证</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%BB%9F%E4%B8%80%E8%AE%A4%E8%AF%81"><span class="toc-number">6.0.0.1.</span> <span class="toc-text">统一认证</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%8D%95%E7%82%B9%E7%99%BB%E5%BD%95"><span class="toc-number">6.0.0.2.</span> <span class="toc-text">单点登录</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%AC%AC%E4%B8%89%E6%96%B9%E8%AE%A4%E8%AF%81"><span class="toc-number">6.0.0.3.</span> <span class="toc-text">第三方认证</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#OAuth2"><span class="toc-number">6.1.</span> <span class="toc-text">OAuth2</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#OAuth2%E7%9A%84%E6%8E%88%E6%9D%83%E6%A8%A1%E5%BC%8F"><span class="toc-number">6.1.0.1.</span> <span class="toc-text">OAuth2的授权模式</span></a></li></ol></li></ol></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/04/21/%E6%B3%A8%E8%A7%A3/" title="无标题">无标题</a><time datetime="2025-04-21T06:26:10.422Z" title="发表于 2025-04-21 14:26:10">2025-04-21</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/04/21/%E5%AD%A6%E6%88%90-%E7%AC%94%E8%AE%B0/" title="学成技术文档">学成技术文档</a><time datetime="2025-04-21T06:26:10.419Z" title="发表于 2025-04-21 14:26:10">2025-04-21</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/04/21/%E9%9D%A2%E8%AF%95/" title="面试---java基础">面试---java基础</a><time datetime="2025-04-21T06:26:10.376Z" title="发表于 2025-04-21 14:26:10">2025-04-21</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/04/21/%E5%B8%B8%E7%94%A8%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" title="无标题">无标题</a><time datetime="2025-04-21T06:26:10.372Z" title="发表于 2025-04-21 14:26:10">2025-04-21</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/04/21/%E5%8F%8D%E5%B0%84/" title="反射">反射</a><time datetime="2025-04-21T06:26:10.372Z" title="发表于 2025-04-21 14:26:10">2025-04-21</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2025 By TTDB</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo 7.3.0</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly 5.3.5</a></div><div class="footer_custom_text">Hi, welcome to my <a target="_blank" rel="noopener" href="https://butterfly.js.org/">blog</a>!</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="translateLink" type="button" title="简繁转换">繁</button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/tw_cn.js"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><div class="js-pjax"></div><script id="canvas_nest" defer="defer" color="0,0,255" opacity="0.7" zIndex="-1" count="99" mobile="false" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/canvas-nest.min.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = false;
+POWERMODE.mobile = false;
+document.body.addEventListener('input', POWERMODE);
+</script><script id="click-heart" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/click-heart.min.js" async="async" mobile="false"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
