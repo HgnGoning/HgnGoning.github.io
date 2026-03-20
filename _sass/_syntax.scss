@@ -7,6 +7,7 @@
   margin: var(--spacing-lg) 0;
   border-radius: var(--radius-md);
   overflow: hidden;
+  border: 1px solid var(--color-border);
 
   pre {
     margin: 0;
@@ -14,15 +15,20 @@
     background-color: var(--color-code-bg);
     border-radius: var(--radius-md);
     font-size: var(--font-size-sm);
-    line-height: 1.6;
+    line-height: 1.7;
     overflow-x: auto;
     -webkit-overflow-scrolling: touch;
+    // 苹果风格代码字体
+    font-family: var(--font-mono);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
   }
 
   code {
     padding: 0;
     background: none;
     font-size: inherit;
+    font-family: inherit;
   }
 
   // 行号
@@ -30,6 +36,7 @@
     color: var(--color-text-muted);
     margin-right: var(--spacing-md);
     user-select: none;
+    opacity: 0.5;
   }
 
   // 语法高亮 - 亮色主题

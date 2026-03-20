@@ -71,6 +71,122 @@
   }
 
   // ============================================
+  // 文章目录 (Table of Contents)
+  // ============================================
+  const tocContent = document.getElementById('toc-content');
+  const tocToggle = document.getElementById('toc-toggle');
+  const toc = document.getElementById('toc');
+  const postContent = document.querySelector('.post-content');
+
+  // 生成目录
+  if (tocContent && postContent) {
+    const headings = postContent.querySelectorAll('h1, h2, h3, h4, h5, h6');
+
+    if (headings.length > 0) {
+      const tocList = document.createElement('ul');
+      let currentLevel = 1;
+      let stack = [tocList];
+
+      headings.forEach(function(heading, index) {
+        // 为标题添加 id
+        const id = 'heading-' + index;
+        heading.id = id;
+
+        const level = parseInt(heading.tagName.charAt(1));
+        const li = document.createElement('li');
+        const link = document.createElement('a');
+
+        link.href = '#' + id;
+        link.textContent = heading.textContent;
+        link.setAttribute('data-target', id);
+        li.appendChild(link);
+
+        // 处理层级
+        if (level > currentLevel) {
+          const ul = document.createElement('ul');
+          stack[stack.length - 1].lastElementChild?.appendChild(ul);
+          stack.push(ul);
+        } else if (level < currentLevel) {
+          const diff = currentLevel - level;
+          for (let i = 0; i < diff && stack.length > 1; i++) {
+            stack.pop();
+          }
+        }
+
+        stack[stack.length - 1].appendChild(li);
+        currentLevel = level;
+      });
+
+      tocContent.appendChild(tocList);
+
+      // 点击目录链接平滑滚动
+      tocList.querySelectorAll('a').forEach(function(link) {
+        link.addEventListener('click', function(e) {
+          e.preventDefault();
+          const targetId = this.getAttribute('data-target');
+          const target = document.getElementById(targetId);
+          if (target) {
+            const headerHeight = document.querySelector('.site-header')?.offsetHeight || 64;
+            const targetPosition = target.offsetTop - headerHeight - 20;
+            window.scrollTo({
+              top: targetPosition,
+              behavior: 'smooth'
+            });
+            // 更新活动状态
+            tocList.querySelectorAll('a').forEach(function(a) {
+              a.classList.remove('active');
+            });
+            this.classList.add('active');
+          }
+        });
+      });
+
+      // 滚动时高亮当前目录项
+      let ticking = false;
+      window.addEventListener('scroll', function() {
+        if (!ticking) {
+          window.requestAnimationFrame(function() {
+            const headerHeight = document.querySelector('.site-header')?.offsetHeight || 64;
+            const scrollPosition = window.scrollY + headerHeight + 50;
+
+            let currentHeading = null;
+            headings.forEach(function(heading) {
+              if (heading.offsetTop <= scrollPosition) {
+                currentHeading = heading;
+              }
+            });
+
+            if (currentHeading) {
+              tocList.querySelectorAll('a').forEach(function(link) {
+                link.classList.remove('active');
+                if (link.getAttribute('data-target') === currentHeading.id) {
+                  link.classList.add('active');
+                }
+              });
+            }
+            ticking = false;
+          });
+          ticking = true;
+        }
+      }, { passive: true });
+
+    } else {
+      // 没有标题时隐藏目录
+      if (toc) {
+        toc.style.display = 'none';
+      }
+    }
+  }
+
+  // 目录折叠切换
+  if (tocToggle && toc) {
+    tocToggle.addEventListener('click', function() {
+      toc.classList.toggle('collapsed');
+      tocContent.classList.toggle('collapsed');
+    });
+  }
+
+  // ============================================
   // 文章列表淡入动画
   // ============================================
   const postItems = document.querySelectorAll('.post-item');
