@@ -16,7 +16,11 @@
       "Bash(node F:/paper/Blog/extract_article.js \"F:/paper/old-blog/2025/03/28/java-io流/index.html\")",
       "Bash(node F:/paper/Blog/extract_article.js \"F:/paper/old-blog/2025/04/21/反射/index.html\")",
       "Bash(node F:/paper/Blog/extract_article.js \"F:/paper/old-blog/2025/04/21/常用数据结构/index.html\")",
-      "Bash(node F:/paper/Blog/convert_html_to_md.js)"
+      "Bash(node F:/paper/Blog/convert_html_to_md.js)",
+      "WebFetch(domain:jekyllthemes.io)",
+      "WebFetch(domain:github.com)",
+      "WebFetch(domain:mmistakes.github.io)",
+      "WebFetch(domain:www.guhub.cn)"
     ]
   }
 }
