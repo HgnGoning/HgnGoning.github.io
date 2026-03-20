@@ -1,0 +1,22 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(cd F:/paper/Blog && bundle install 2>&1)",
+      "Bash(where ruby:*)",
+      "Bash(winget search:*)",
+      "Bash(powershell -Command \"Invoke-WebRequest -Uri 'https://github.com/oneclick/rubyinstaller2/releases/download/RubyInstaller-3.3.5-1/rubyinstaller-devkit-3.3.5-1-x64.exe' -OutFile '$env:TEMP\\\\rubyinstaller.exe'\")",
+      "Bash(curl -L -o \"C:/Users/31428/Downloads/rubyinstaller.exe\" \"https://github.com/oneclick/rubyinstaller2/releases/download/RubyInstaller-3.3.5-1/rubyinstaller-devkit-3.3.5-1-x64.exe\" 2>&1)",
+      "Bash(cd F:/paper/Blog && rm -f _posts/2026-03-20-welcome.md _posts/2026-03-19-my-vscode-setup.md _posts/2026-03-18-code-snippets.md _posts/2026-03-15-spring-rain.md _posts/2026-03-10-git-tips.md _posts/2026-03-05-hello-world-tradition.md && ls _posts/)",
+      "Bash(sed -n 's/.*<article class=\"\"container post-content\"\" id=\"\"article-container\"\">\\\\\\(.*\\\\\\)<\\\\/article>.*/\\\\1/p' \"F:/paper/old-blog/2025/04/29/langchain4j/index.html\")",
+      "Read(//tmp/**)",
+      "Bash(powershell -Command \"Get-Content 'F:/paper/old-blog/2025/04/29/langchain4j/index.html' -Raw | Select-String -Pattern '\\(?s\\)\\(?<=<article class=\\\\\"container post-content\\\\\" id=\\\\\"article-container\\\\\">\\).*?\\(?=</article>\\)' -AllMatches | ForEach-Object { \\\\$_.Matches.Value.Substring\\(0, [Math]::Min\\(30000, \\\\$_.Matches.Value.Length\\)\\) }\")",
+      "Bash(where python:*)",
+      "Bash(python F:/paper/Blog/extract_article.py \"F:/paper/old-blog/2025/03/28/java-io流/index.html\")",
+      "Bash(powershell -Command \"python --version\")",
+      "Bash(node F:/paper/Blog/extract_article.js \"F:/paper/old-blog/2025/03/28/java-io流/index.html\")",
+      "Bash(node F:/paper/Blog/extract_article.js \"F:/paper/old-blog/2025/04/21/反射/index.html\")",
+      "Bash(node F:/paper/Blog/extract_article.js \"F:/paper/old-blog/2025/04/21/常用数据结构/index.html\")",
+      "Bash(node F:/paper/Blog/convert_html_to_md.js)"
+    ]
+  }
+}
