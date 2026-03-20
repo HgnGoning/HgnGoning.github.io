@@ -42,13 +42,13 @@ git push
 
 ### Front Matter 说明
 
-| 字段 | 必填 | 说明 |
-|------|------|------|
-| `layout` | 是 | 固定填 `post` |
-| `title` | 是 | 文章标题 |
-| `date` | 是 | 发布日期，格式 `YYYY-MM-DD` |
-| `categories` | 否 | 分类，如 `[技术]` 或 `[技术, Java]` |
-| `tags` | 否 | 标签，如 `[Redis, 数据库]` |
+| 字段           | 必填  | 说明                         |
+| ------------ | --- | -------------------------- |
+| `layout`     | 是   | 固定填 `post`                 |
+| `title`      | 是   | 文章标题                       |
+| `date`       | 是   | 发布日期，格式 `YYYY-MM-DD`       |
+| `categories` | 否   | 分类，如 `[技术]` 或 `[技术, Java]` |
+| `tags`       | 否   | 标签，如 `[Redis, 数据库]`        |
 
 ### Markdown 基础语法
 
@@ -95,15 +95,15 @@ public class Hello {
 
 ## 分类建议
 
-| 分类名 | 适用内容 |
-|--------|----------|
-| `java基础` | Java 语法、集合、IO、反射等 |
-| `java后端开发` | Spring、MyBatis、微服务等 |
-| `数据库` | MySQL、Redis、MongoDB 等 |
-| `中间件` | RabbitMQ、Kafka、Elasticsearch 等 |
-| `项目` | 项目实战、经验总结 |
-| `工具` | Git、IDE、效率工具 |
-| `生活` | 随笔、感想 |
+| 分类名        | 适用内容                           |
+| ---------- | ------------------------------ |
+| `java基础`   | Java 语法、集合、IO、反射等              |
+| `java后端开发` | Spring、MyBatis、微服务等            |
+| `数据库`      | MySQL、Redis、MongoDB 等          |
+| `中间件`      | RabbitMQ、Kafka、Elasticsearch 等 |
+| `项目`       | 项目实战、经验总结                      |
+| `工具`       | Git、IDE、效率工具                   |
+| `生活`       | 随笔、感想                          |
 
 ---
 
@@ -150,6 +150,7 @@ bundle exec jekyll serve
 ### Q: 文章没有显示？
 
 检查：
+
 1. 文件名格式是否正确（`YYYY-MM-DD-title.md`）
 2. Front Matter 格式是否正确
 3. `layout: post` 是否填写

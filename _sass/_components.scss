@@ -220,101 +220,156 @@
 }
 
 // ============================================
-// 文章目录 (Table of Contents)
+// 文章目录 (Table of Contents) - 右侧悬浮
 // ============================================
-.toc {
-  background-color: var(--color-bg-secondary);
+.toc-sidebar {
+  position: fixed;
+  right: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 100;
+  display: none;
+
+  @media (min-width: 1200px) {
+    display: block;
+  }
+}
+
+// 目录切换按钮（收起状态显示）
+.toc-toggle-btn {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background-color: var(--color-card-bg);
+  border: 1px solid var(--color-border);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-text-secondary);
+  box-shadow: 0 2px 8px var(--color-shadow);
+  transition: all var(--transition-fast);
+
+  &:hover {
+    color: var(--color-accent);
+    border-color: var(--color-accent);
+  }
+
+  // 目录展开时隐藏按钮
+  &.hidden {
+    display: none;
+  }
+}
+
+// 目录面板（展开状态）
+.toc-panel {
+  position: absolute;
+  right: 50px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 220px;
+  max-height: 60vh;
+  background-color: var(--color-card-bg);
   border: 1px solid var(--color-border);
   border-radius: var(--radius-md);
-  margin-bottom: var(--spacing-xl);
-  overflow: hidden;
+  box-shadow: 0 4px 20px var(--color-shadow);
+  opacity: 0;
+  visibility: hidden;
+  transition: all var(--transition-base);
 
-  .toc-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: var(--spacing-md) var(--spacing-lg);
-    border-bottom: 1px solid var(--color-border);
-    background-color: var(--color-bg);
+  &.open {
+    opacity: 1;
+    visibility: visible;
   }
+}
 
-  .toc-title {
-    font-size: var(--font-size-sm);
-    font-weight: 600;
+.toc-panel-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--spacing-md);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.toc-panel-title {
+  font-size: var(--font-size-sm);
+  font-weight: 600;
+  color: var(--color-text);
+}
+
+.toc-close-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+  color: var(--color-text-muted);
+  transition: color var(--transition-fast);
+
+  &:hover {
     color: var(--color-text);
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
+  }
+}
+
+.toc-panel-content {
+  padding: var(--spacing-md);
+  max-height: calc(60vh - 50px);
+  overflow-y: auto;
+
+  // 自定义滚动条
+  &::-webkit-scrollbar {
+    width: 4px;
   }
 
-  .toc-toggle {
-    background: none;
-    border: none;
-    cursor: pointer;
-    padding: var(--spacing-xs);
-    color: var(--color-text-muted);
-    transition: transform var(--transition-fast);
-
-    &:hover {
-      color: var(--color-accent);
-    }
+  &::-webkit-scrollbar-track {
+    background: transparent;
   }
 
-  .toc-content {
-    padding: var(--spacing-md) var(--spacing-lg);
-    max-height: 400px;
-    overflow-y: auto;
-
-    &.collapsed {
-      display: none;
-    }
+  &::-webkit-scrollbar-thumb {
+    background-color: var(--color-border);
+    border-radius: 2px;
   }
+}
 
-  // 目录列表样式
+// 目录列表样式
+.toc-panel-content ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+
   ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-
-    ul {
-      padding-left: var(--spacing-lg);
-      margin-top: var(--spacing-xs);
-    }
-  }
-
-  li {
-    margin-bottom: var(--spacing-xs);
-  }
-
-  a {
-    display: block;
-    font-size: var(--font-size-sm);
-    color: var(--color-text-secondary);
-    padding: var(--spacing-xs) 0;
-    border-left: 2px solid transparent;
-    padding-left: var(--spacing-sm);
-    transition: all var(--transition-fast);
-
-    &:hover {
-      color: var(--color-accent);
-      border-left-color: var(--color-accent);
-    }
-
-    &.active {
-      color: var(--color-accent);
-      border-left-color: var(--color-accent);
-      font-weight: 500;
-    }
+    padding-left: var(--spacing-md);
+    margin-top: var(--spacing-xs);
   }
 }
 
-// 目录折叠状态
-.toc.collapsed {
-  .toc-toggle svg {
-    transform: rotate(-90deg);
+.toc-panel-content li {
+  margin-bottom: 2px;
+}
+
+.toc-panel-content a {
+  display: block;
+  font-size: var(--font-size-sm);
+  color: var(--color-text-secondary);
+  padding: var(--spacing-xs) var(--spacing-sm);
+  border-left: 2px solid transparent;
+  text-decoration: none;
+  transition: all var(--transition-fast);
+
+  &:hover {
+    color: var(--color-accent);
+    border-left-color: var(--color-accent);
+    background-color: var(--color-bg-secondary);
+  }
+
+  &.active {
+    color: var(--color-accent);
+    border-left-color: var(--color-accent);
+    font-weight: 500;
+    background-color: var(--color-bg-secondary);
   }
 }
 
-// 空目录隐藏
-.toc:empty {
+// 空目录时隐藏整个侧边栏
+.toc-sidebar:empty {
   display: none;
 }

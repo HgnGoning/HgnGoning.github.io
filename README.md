@@ -28,10 +28,12 @@ bundle exec jekyll serve
 ### 方法一：创建仓库
 
 1. 在 GitHub 上创建新仓库：
+   
    - 仓库名可以是 `blog` 或任意名称
    - 如果想使用 `https://hgngoning.github.io` 作为域名，仓库名应为 `hgngoning.github.io`
 
 2. 推送代码到 GitHub：
+   
    ```bash
    git init
    git add .
@@ -42,12 +44,14 @@ bundle exec jekyll serve
    ```
 
 3. 启用 GitHub Pages：
+   
    - 进入仓库 Settings → Pages
    - Source 选择 `Deploy from a branch`
    - Branch 选择 `main`，目录选择 `/ (root)`
    - 点击 Save
 
 4. 等待几分钟后访问：
+   
    - `https://hgngoning.github.io/blog`（如果仓库名是 blog）
    - 或 `https://hgngoning.github.io`（如果仓库名是 hgngoning.github.io）
 
@@ -116,6 +120,7 @@ tags: [Jekyll, 博客]
 ### Markdown 语法
 
 支持标准 Markdown 语法，以及：
+
 - 代码高亮
 - 表格
 - 任务列表
@@ -136,6 +141,7 @@ author: HgnGoning
 ### 修改样式
 
 样式文件位于 `_sass` 目录：
+
 - `_variables.scss` - 颜色、字体变量
 - `_base.scss` - 基础样式
 - `_layout.scss` - 布局样式

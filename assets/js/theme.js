@@ -71,21 +71,21 @@
   }
 
   // ============================================
-  // 文章目录 (Table of Contents)
+  // 文章目录 - 右侧悬浮
   // ============================================
-  const tocContent = document.getElementById('toc-content');
-  const tocToggle = document.getElementById('toc-toggle');
-  const toc = document.getElementById('toc');
+  const tocSidebar = document.getElementById('toc-sidebar');
+  const tocToggleBtn = document.getElementById('toc-toggle-btn');
+  const tocCloseBtn = document.getElementById('toc-close-btn');
+  const tocPanel = document.getElementById('toc-panel');
+  const tocPanelContent = document.getElementById('toc-panel-content');
   const postContent = document.querySelector('.post-content');
 
   // 生成目录
-  if (tocContent && postContent) {
-    const headings = postContent.querySelectorAll('h1, h2, h3, h4, h5, h6');
+  if (tocPanelContent && postContent) {
+    const headings = postContent.querySelectorAll('h2, h3, h4');
 
     if (headings.length > 0) {
       const tocList = document.createElement('ul');
-      let currentLevel = 1;
-      let stack = [tocList];
 
       headings.forEach(function(heading, index) {
         // 为标题添加 id
@@ -101,23 +101,17 @@
         link.setAttribute('data-target', id);
         li.appendChild(link);
 
-        // 处理层级
-        if (level > currentLevel) {
-          const ul = document.createElement('ul');
-          stack[stack.length - 1].lastElementChild?.appendChild(ul);
-          stack.push(ul);
-        } else if (level < currentLevel) {
-          const diff = currentLevel - level;
-          for (let i = 0; i < diff && stack.length > 1; i++) {
-            stack.pop();
-          }
+        // 根据层级添加缩进类
+        if (level === 3) {
+          li.style.paddingLeft = '12px';
+        } else if (level === 4) {
+          li.style.paddingLeft = '24px';
         }
 
-        stack[stack.length - 1].appendChild(li);
-        currentLevel = level;
+        tocList.appendChild(li);
       });
 
-      tocContent.appendChild(tocList);
+      tocPanelContent.appendChild(tocList);
 
       // 点击目录链接平滑滚动
       tocList.querySelectorAll('a').forEach(function(link) {
@@ -147,7 +141,7 @@
         if (!ticking) {
           window.requestAnimationFrame(function() {
             const headerHeight = document.querySelector('.site-header')?.offsetHeight || 64;
-            const scrollPosition = window.scrollY + headerHeight + 50;
+            const scrollPosition = window.scrollY + headerHeight + 100;
 
             let currentHeading = null;
             headings.forEach(function(heading) {
@@ -171,20 +165,39 @@
       }, { passive: true });
 
     } else {
-      // 没有标题时隐藏目录
-      if (toc) {
-        toc.style.display = 'none';
+      // 没有标题时隐藏整个目录侧边栏
+      if (tocSidebar) {
+        tocSidebar.style.display = 'none';
       }
     }
   }
 
-  // 目录折叠切换
-  if (tocToggle && toc) {
-    tocToggle.addEventListener('click', function() {
-      toc.classList.toggle('collapsed');
-      tocContent.classList.toggle('collapsed');
+  // 目录展开/收起
+  if (tocToggleBtn && tocPanel) {
+    tocToggleBtn.addEventListener('click', function() {
+      tocPanel.classList.add('open');
+      tocToggleBtn.classList.add('hidden');
     });
   }
+
+  if (tocCloseBtn && tocPanel && tocToggleBtn) {
+    tocCloseBtn.addEventListener('click', function() {
+      tocPanel.classList.remove('open');
+      tocToggleBtn.classList.remove('hidden');
+    });
+  }
+
+  // 点击目录外部关闭
+  document.addEventListener('click', function(e) {
+    if (tocPanel && tocPanel.classList.contains('open')) {
+      if (!tocPanel.contains(e.target) && !tocToggleBtn.contains(e.target)) {
+        tocPanel.classList.remove('open');
+        if (tocToggleBtn) {
+          tocToggleBtn.classList.remove('hidden');
+        }
+      }
+    }
+  });
 
   // ============================================
   // 文章列表淡入动画
