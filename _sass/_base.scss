@@ -1,0 +1,159 @@
+// ============================================
+// TTDB 设计系统 - 基础样式
+// ============================================
+
+// 重置样式
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+// 根元素
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  font-family: var(--font-sans);
+  font-size: var(--font-size-base);
+  line-height: 1.7;
+  color: var(--color-text);
+  background-color: var(--color-bg);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  transition: background-color var(--transition-base), color var(--transition-base);
+}
+
+// 排版
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-serif);
+  font-weight: 600;
+  line-height: 1.3;
+  margin-top: var(--spacing-xl);
+  margin-bottom: var(--spacing-md);
+  color: var(--color-text);
+}
+
+h1 { font-size: var(--font-size-4xl); }
+h2 { font-size: var(--font-size-3xl); }
+h3 { font-size: var(--font-size-2xl); }
+h4 { font-size: var(--font-size-xl); }
+h5 { font-size: var(--font-size-lg); }
+h6 { font-size: var(--font-size-base); }
+
+p {
+  margin-bottom: var(--spacing-md);
+}
+
+// 链接
+a {
+  color: var(--color-link);
+  text-decoration: none;
+  transition: color var(--transition-fast);
+  position: relative;
+
+  &:hover {
+    color: var(--color-link-hover);
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 2px;
+  }
+}
+
+// 列表
+ul, ol {
+  margin-bottom: var(--spacing-md);
+  padding-left: var(--spacing-lg);
+
+  li {
+    margin-bottom: var(--spacing-xs);
+  }
+}
+
+// 引用
+blockquote {
+  margin: var(--spacing-lg) 0;
+  padding: var(--spacing-md) var(--spacing-lg);
+  border-left: 3px solid var(--color-accent);
+  background-color: var(--color-bg-secondary);
+  font-style: italic;
+  color: var(--color-text-secondary);
+
+  p:last-child {
+    margin-bottom: 0;
+  }
+}
+
+// 代码
+code {
+  font-family: var(--font-mono);
+  font-size: 0.9em;
+  padding: 0.2em 0.4em;
+  background-color: var(--color-code-bg);
+  border-radius: var(--radius-sm);
+}
+
+pre {
+  margin: var(--spacing-lg) 0;
+  padding: var(--spacing-lg);
+  background-color: var(--color-code-bg);
+  border-radius: var(--radius-md);
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+
+  code {
+    padding: 0;
+    background: none;
+    font-size: var(--font-size-sm);
+    line-height: 1.6;
+  }
+}
+
+// 分割线
+hr {
+  border: none;
+  height: 1px;
+  background-color: var(--color-border);
+  margin: var(--spacing-2xl) 0;
+}
+
+// 图片
+img {
+  max-width: 100%;
+  height: auto;
+  border-radius: var(--radius-md);
+}
+
+// 表格
+table {
+  width: 100%;
+  margin: var(--spacing-lg) 0;
+  border-collapse: collapse;
+  font-size: var(--font-size-sm);
+
+  th, td {
+    padding: var(--spacing-sm) var(--spacing-md);
+    border: 1px solid var(--color-border);
+    text-align: left;
+  }
+
+  th {
+    background-color: var(--color-bg-secondary);
+    font-weight: 600;
+  }
+
+  tr:nth-child(even) {
+    background-color: var(--color-bg-secondary);
+  }
+}
+
+// 选中文本
+::selection {
+  background-color: var(--color-accent);
+  color: white;
+}

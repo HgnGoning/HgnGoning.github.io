@@ -1,0 +1,164 @@
+// ============================================
+// TTDB 设计系统 - 动画效果
+// ============================================
+
+// 基础过渡
+a, button, input, select, textarea {
+  transition: all var(--transition-fast);
+}
+
+// 淡入动画
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.fade-in {
+  animation: fadeIn var(--transition-base) ease forwards;
+}
+
+// 滑入动画
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.slide-in {
+  animation: slideIn var(--transition-base) ease forwards;
+}
+
+// 文章列表入场动画
+.post-item {
+  animation: fadeIn var(--transition-base) ease forwards;
+
+  @for $i from 1 through 10 {
+    &:nth-child(#{$i}) {
+      animation-delay: #{$i * 50}ms;
+    }
+  }
+}
+
+// 按钮悬停效果
+button, .button {
+  transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+
+  &:hover {
+    transform: translateY(-1px);
+  }
+
+  &:active {
+    transform: translateY(0);
+  }
+}
+
+// 链接下划线动画
+.post-content, .page-content {
+  a {
+    position: relative;
+
+    &::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0;
+      height: 1px;
+      background-color: var(--color-accent);
+      transition: width var(--transition-base);
+    }
+
+    &:hover::after {
+      width: 100%;
+    }
+  }
+}
+
+// 图片悬停效果
+.post-content img, .page-content img {
+  transition: transform var(--transition-base), box-shadow var(--transition-base);
+
+  &:hover {
+    transform: scale(1.02);
+    box-shadow: 0 10px 40px var(--color-shadow);
+  }
+}
+
+// 代码块悬停效果
+.highlight {
+  transition: box-shadow var(--transition-base);
+
+  &:hover {
+    box-shadow: 0 4px 20px var(--color-shadow);
+  }
+}
+
+// 主题切换过渡
+html {
+  transition: background-color var(--transition-base);
+}
+
+body, .site-header, .site-footer {
+  transition: background-color var(--transition-base), border-color var(--transition-base);
+}
+
+// 脉冲动画（用于加载状态）
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+.pulse {
+  animation: pulse 2s ease-in-out infinite;
+}
+
+// 返回顶部按钮显示动画
+.back-to-top {
+  &.visible {
+    animation: fadeIn var(--transition-base) ease forwards;
+  }
+}
+
+// 主题切换按钮旋转
+.theme-toggle {
+  svg {
+    transition: transform var(--transition-base);
+  }
+
+  &:hover svg {
+    transform: rotate(15deg);
+  }
+}
+
+// 导航栏滚动效果
+.site-header {
+  transition: transform var(--transition-base), box-shadow var(--transition-base);
+
+  &.scrolled {
+    box-shadow: 0 2px 10px var(--color-shadow);
+  }
+}
+
+// 减少动画偏好
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

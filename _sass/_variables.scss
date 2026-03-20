@@ -1,0 +1,77 @@
+// ============================================
+// TTDB 设计系统 - 变量定义
+// ============================================
+
+// 颜色系统
+:root {
+  // 亮色主题
+  --color-bg: #fefefe;
+  --color-bg-secondary: #f8f8f8;
+  --color-text: #1a1a1a;
+  --color-text-secondary: #666666;
+  --color-text-muted: #999999;
+  --color-border: #e8e8e8;
+  --color-accent: #2d7d9a;
+  --color-accent-light: #4a9cb8;
+  --color-link: #2d7d9a;
+  --color-link-hover: #1a5a70;
+  --color-code-bg: #f4f4f4;
+  --color-shadow: rgba(0, 0, 0, 0.08);
+  --color-card-bg: #ffffff;
+
+  // 字体
+  --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-serif: "Noto Serif SC", "Source Han Serif SC", Georgia, serif;
+  --font-mono: "Fira Code", "Source Code Pro", Consolas, monospace;
+
+  // 字号
+  --font-size-xs: 0.75rem;
+  --font-size-sm: 0.875rem;
+  --font-size-base: 1rem;
+  --font-size-lg: 1.125rem;
+  --font-size-xl: 1.25rem;
+  --font-size-2xl: 1.5rem;
+  --font-size-3xl: 2rem;
+  --font-size-4xl: 2.5rem;
+
+  // 间距
+  --spacing-xs: 0.25rem;
+  --spacing-sm: 0.5rem;
+  --spacing-md: 1rem;
+  --spacing-lg: 1.5rem;
+  --spacing-xl: 2rem;
+  --spacing-2xl: 3rem;
+  --spacing-3xl: 4rem;
+
+  // 圆角
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --radius-full: 9999px;
+
+  // 过渡
+  --transition-fast: 150ms ease;
+  --transition-base: 250ms ease;
+  --transition-slow: 400ms ease;
+
+  // 最大宽度
+  --max-width: 720px;
+  --header-height: 64px;
+}
+
+// 暗色主题
+[data-theme="dark"] {
+  --color-bg: #0f0f0f;
+  --color-bg-secondary: #1a1a1a;
+  --color-text: #e8e8e8;
+  --color-text-secondary: #a8a8a8;
+  --color-text-muted: #666666;
+  --color-border: #2a2a2a;
+  --color-accent: #4a9cb8;
+  --color-accent-light: #6ab8d4;
+  --color-link: #4a9cb8;
+  --color-link-hover: #6ab8d4;
+  --color-code-bg: #1a1a1a;
+  --color-shadow: rgba(0, 0, 0, 0.3);
+  --color-card-bg: #161616;
+}

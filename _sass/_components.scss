@@ -1,0 +1,220 @@
+// ============================================
+// TTDB 设计系统 - 组件样式
+// ============================================
+
+// 主题切换按钮
+.theme-toggle {
+  width: 40px;
+  height: 40px;
+  border-radius: var(--radius-full);
+  border: 1px solid var(--color-border);
+  background-color: transparent;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-text);
+  transition: all var(--transition-fast);
+
+  &:hover {
+    background-color: var(--color-bg-secondary);
+    border-color: var(--color-accent);
+  }
+
+  .sun-icon {
+    display: block;
+  }
+
+  .moon-icon {
+    display: none;
+  }
+}
+
+[data-theme="dark"] {
+  .theme-toggle {
+    .sun-icon {
+      display: none;
+    }
+
+    .moon-icon {
+      display: block;
+    }
+  }
+}
+
+// 标签
+.post-tags {
+  display: inline-flex;
+  gap: var(--spacing-sm);
+  flex-wrap: wrap;
+}
+
+.tag {
+  font-size: var(--font-size-xs);
+  padding: var(--spacing-xs) var(--spacing-sm);
+  background-color: var(--color-bg-secondary);
+  border-radius: var(--radius-sm);
+  color: var(--color-text-secondary);
+  transition: all var(--transition-fast);
+
+  &:hover {
+    background-color: var(--color-accent);
+    color: white;
+  }
+}
+
+// 分类
+.post-categories {
+  a {
+    font-size: var(--font-size-sm);
+    color: var(--color-accent);
+    font-weight: 500;
+
+    &:not(:last-child)::after {
+      content: ', ';
+    }
+  }
+}
+
+// 首页介绍
+.hero {
+  text-align: center;
+  padding: var(--spacing-3xl) 0;
+  margin-bottom: var(--spacing-2xl);
+
+  .hero-title {
+    font-size: var(--font-size-4xl);
+    margin-bottom: var(--spacing-md);
+    background: linear-gradient(135deg, var(--color-text) 0%, var(--color-accent) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .hero-description {
+    font-size: var(--font-size-lg);
+    color: var(--color-text-secondary);
+    max-width: 500px;
+    margin: 0 auto;
+  }
+}
+
+// 卡片效果
+.card {
+  background-color: var(--color-card-bg);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: var(--spacing-lg);
+  transition: all var(--transition-base);
+
+  &:hover {
+    border-color: var(--color-accent);
+    box-shadow: 0 4px 20px var(--color-shadow);
+    transform: translateY(-2px);
+  }
+}
+
+// 阅读更多链接
+.read-more {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-xs);
+  font-size: var(--font-size-sm);
+  font-weight: 500;
+  color: var(--color-accent);
+  margin-top: var(--spacing-md);
+
+  &::after {
+    content: '→';
+    transition: transform var(--transition-fast);
+  }
+
+  &:hover::after {
+    transform: translateX(4px);
+  }
+}
+
+// 分页
+.pagination {
+  display: flex;
+  justify-content: center;
+  gap: var(--spacing-sm);
+  margin-top: var(--spacing-2xl);
+
+  a, span {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: var(--radius-md);
+    font-size: var(--font-size-sm);
+    border: 1px solid var(--color-border);
+    color: var(--color-text-secondary);
+    transition: all var(--transition-fast);
+  }
+
+  a:hover {
+    border-color: var(--color-accent);
+    color: var(--color-accent);
+  }
+
+  .current {
+    background-color: var(--color-accent);
+    border-color: var(--color-accent);
+    color: white;
+  }
+}
+
+// 搜索框
+.search-box {
+  position: relative;
+  margin-bottom: var(--spacing-xl);
+
+  input {
+    width: 100%;
+    padding: var(--spacing-md) var(--spacing-lg);
+    padding-left: 44px;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    font-size: var(--font-size-base);
+    background-color: var(--color-bg);
+    color: var(--color-text);
+    transition: all var(--transition-fast);
+
+    &:focus {
+      outline: none;
+      border-color: var(--color-accent);
+    }
+
+    &::placeholder {
+      color: var(--color-text-muted);
+    }
+  }
+
+  svg {
+    position: absolute;
+    left: var(--spacing-md);
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--color-text-muted);
+  }
+}
+
+// 空状态
+.empty-state {
+  text-align: center;
+  padding: var(--spacing-3xl);
+  color: var(--color-text-muted);
+
+  svg {
+    width: 64px;
+    height: 64px;
+    margin-bottom: var(--spacing-lg);
+    opacity: 0.5;
+  }
+
+  p {
+    font-size: var(--font-size-lg);
+  }
+}
