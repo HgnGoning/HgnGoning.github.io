@@ -21,7 +21,9 @@
       "WebFetch(domain:github.com)",
       "WebFetch(domain:mmistakes.github.io)",
       "WebFetch(domain:www.guhub.cn)",
-      "Bash(mkdir -p F:/paper/Blog/_drafts && mkdir -p F:/paper/Blog/assets/images)"
+      "Bash(mkdir -p F:/paper/Blog/_drafts && mkdir -p F:/paper/Blog/assets/images)",
+      "Bash(mkdir -p \"F:/paper/Blog/assets/images/ai-agent\" && mkdir -p \"F:/paper/Blog/assets/images/ai-notes\" && cp -r \"F:/paper/Blog/_drafts/AI/assets/AI Agent系统/\"* \"F:/paper/Blog/assets/images/ai-agent/\" && cp -r \"F:/paper/Blog/_drafts/AI/assets/小记/\"* \"F:/paper/Blog/assets/images/ai-notes/\" && echo \"图片已复制\")",
+      "Bash(cd F:/paper/Blog/_drafts/AI && for f in *.md; do echo \"$f\"; done)"
     ]
   }
 }
