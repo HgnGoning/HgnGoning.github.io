@@ -20,7 +20,8 @@
       "WebFetch(domain:jekyllthemes.io)",
       "WebFetch(domain:github.com)",
       "WebFetch(domain:mmistakes.github.io)",
-      "WebFetch(domain:www.guhub.cn)"
+      "WebFetch(domain:www.guhub.cn)",
+      "Bash(mkdir -p F:/paper/Blog/_drafts && mkdir -p F:/paper/Blog/assets/images)"
     ]
   }
 }
