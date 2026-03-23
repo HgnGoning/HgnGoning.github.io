@@ -7,6 +7,7 @@
     <nav class="site-nav">
       <a href="{{ '/' | relative_url }}" class="nav-link {% if page.url == '/' %}active{% endif %}">首页</a>
       <a href="{{ '/archive/' | relative_url }}" class="nav-link {% if page.url contains '/archive' %}active{% endif %}">归档</a>
+      <a href="{{ '/diary/' | relative_url }}" class="nav-link {% if page.url contains '/diary' %}active{% endif %}">日记</a>
       <a href="{{ '/about/' | relative_url }}" class="nav-link {% if page.url contains '/about' %}active{% endif %}">关于</a>
     </nav>
 

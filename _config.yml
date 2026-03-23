@@ -64,3 +64,9 @@ exclude:
 # 包含文件
 include:
   - _pages
+
+# 日记集合
+collections:
+  diaries:
+    output: true
+    permalink: /diary/:year/:month/:day/

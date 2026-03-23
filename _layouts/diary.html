@@ -1,0 +1,39 @@
+---
+layout: default
+---
+<article class="diary">
+  <header class="diary-header">
+    <time class="diary-date">{{ page.date | date: "%Y年%m月%d日" }}</time>
+    <div class="diary-weekday">{{ page.date | date: "%A" }}</div>
+  </header>
+
+  <div class="diary-content">
+    {{ content }}
+  </div>
+
+  <nav class="diary-nav">
+    {% if page.previous.url %}
+    <a href="{{ page.previous.url | relative_url }}" class="diary-nav-link prev">
+      <span class="nav-label">前一天</span>
+    </a>
+    {% else %}
+    <span class="diary-nav-link disabled prev">
+      <span class="nav-label">前一天</span>
+    </span>
+    {% endif %}
+
+    <a href="{{ '/diary/' | relative_url }}" class="diary-nav-link all">
+      <span class="nav-label">全部日记</span>
+    </a>
+
+    {% if page.next.url %}
+    <a href="{{ page.next.url | relative_url }}" class="diary-nav-link next">
+      <span class="nav-label">后一天</span>
+    </a>
+    {% else %}
+    <span class="diary-nav-link disabled next">
+      <span class="nav-label">后一天</span>
+    </span>
+    {% endif %}
+  </nav>
+</article>
