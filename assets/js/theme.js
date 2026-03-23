@@ -200,27 +200,8 @@
   });
 
   // ============================================
-  // 文章列表淡入动画
+  // 文章列表淡入动画（已禁用，极简风格不需要）
   // ============================================
-  const postItems = document.querySelectorAll('.post-item');
-
-  if (postItems.length > 0 && 'IntersectionObserver' in window) {
-    const observer = new IntersectionObserver(function(entries) {
-      entries.forEach(function(entry) {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('fade-in');
-          observer.unobserve(entry.target);
-        }
-      });
-    }, {
-      threshold: 0.1
-    });
-
-    postItems.forEach(function(item) {
-      item.style.opacity = '0';
-      observer.observe(item);
-    });
-  }
 
   // ============================================
   // 图片懒加载（如果需要）
