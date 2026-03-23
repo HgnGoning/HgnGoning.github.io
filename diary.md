@@ -49,7 +49,7 @@ description: 记录生活中的点滴
     {% for diary in site.diaries %}
     "{{ diary.date | date: '%Y-%m-%d' }}": {
       url: "{{ diary.url | relative_url }}",
-      excerpt: "{{ diary.content | strip_html | truncatewords: 20 | escape_once }}"
+      excerpt: "{{ diary.content | strip_html | strip_newlines | truncatewords: 20 | escape }}"
     }{% unless forloop.last %},{% endunless %}
     {% endfor %}
   };
