@@ -128,10 +128,11 @@
 
   &:hover {
     .post-title {
-      color: var(--color-text);
+      text-decoration: underline;
+      text-underline-offset: 3px;
     }
     .post-date {
-      color: var(--color-text-secondary);
+      color: var(--color-text);
     }
   }
 }
@@ -141,7 +142,7 @@
   width: 90px;
   font-size: var(--font-size-sm);
   font-family: var(--font-mono);
-  color: var(--color-text-muted);
+  color: var(--color-text-secondary);
   padding-top: 0.2em;
   transition: color var(--transition-fast);
 }
@@ -155,7 +156,7 @@
   font-family: var(--font-serif);
   font-size: var(--font-size-lg);
   font-weight: 600;
-  color: var(--color-text-secondary);
+  color: var(--color-text);
   margin: 0 0 var(--spacing-xs);
   line-height: 1.4;
   transition: color var(--transition-fast);
@@ -163,7 +164,7 @@
 
 .post-excerpt {
   font-size: var(--font-size-sm);
-  color: var(--color-text-muted);
+  color: var(--color-text-secondary);
   margin: 0;
   line-height: 1.7;
   display: -webkit-box;
