@@ -124,6 +124,7 @@
   gap: var(--spacing-lg);
   padding: var(--spacing-lg) 0;
   text-decoration: none;
+  color: var(--color-text);
   transition: opacity var(--transition-fast);
 
   &:hover {
