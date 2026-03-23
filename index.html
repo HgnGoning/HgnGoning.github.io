@@ -3,37 +3,66 @@ layout: default
 title: 首页
 ---
 
-<!-- 首页头部 -->
-<header class="home-header">
-  <div class="header-content">
-    <h1 class="site-title">TTDB</h1>
-    <p class="site-tagline">写代码，记生活</p>
+<!-- 首页英雄区 -->
+<header class="home-hero">
+  <div class="hero-content">
+    <div class="hero-badge">Hello, World!</div>
+    <h1 class="hero-title">
+      <span class="title-line">写代码</span>
+      <span class="title-divider">·</span>
+      <span class="title-line">记生活</span>
+    </h1>
+    <p class="hero-desc">
+      一个热爱技术的开发者，在这里记录学习与生活的点滴
+    </p>
+    <div class="hero-stats">
+      <div class="stat-item">
+        <span class="stat-number">{{ site.posts.size }}</span>
+        <span class="stat-label">篇文章</span>
+      </div>
+      <div class="stat-divider"></div>
+      <div class="stat-item">
+        <span class="stat-number">{{ site.diaries.size }}</span>
+        <span class="stat-label">篇日记</span>
+      </div>
+    </div>
+  </div>
+  <div class="hero-decoration">
+    <div class="decoration-line"></div>
+    <div class="decoration-dot"></div>
   </div>
 </header>
 
 <!-- 文章列表 -->
 <main class="home-main">
   <section class="recent-posts">
-    <h2 class="section-label">最近</h2>
+    <div class="section-header">
+      <h2 class="section-label">最近文章</h2>
+      <a href="{{ '/archive/' | relative_url }}" class="section-more">查看全部</a>
+    </div>
 
     <div class="posts-container">
-      {% for post in site.posts limit:8 %}
+      {% for post in site.posts limit:5 %}
       <article class="post-entry">
         <a href="{{ post.url | relative_url }}" class="post-link">
-          <div class="post-info">
-            <time class="post-date">{{ post.date | date: "%Y.%m.%d" }}</time>
-            {% if post.categories.first %}
-            <span class="post-category">{{ post.categories.first }}</span>
-            {% endif %}
+          <div class="post-left">
+            <time class="post-date">{{ post.date | date: "%m.%d" }}</time>
           </div>
-          <h3 class="post-title">{{ post.title }}</h3>
-          {% if post.excerpt %}
-          <p class="post-summary">{{ post.excerpt | strip_html | truncatewords: 25 }}</p>
-          {% endif %}
-          <div class="post-tags">
-            {% for tag in post.tags limit:3 %}
-            <span>{{ tag }}</span>
-            {% endfor %}
+          <div class="post-right">
+            <div class="post-meta">
+              {% if post.categories.first %}
+              <span class="post-category">{{ post.categories.first }}</span>
+              {% endif %}
+            </div>
+            <h3 class="post-title">{{ post.title }}</h3>
+            {% if post.excerpt %}
+            <p class="post-summary">{{ post.excerpt | strip_html | truncatewords: 20 }}</p>
+            {% endif %}
+            <div class="post-tags">
+              {% for tag in post.tags limit:3 %}
+              <span>{{ tag }}</span>
+              {% endfor %}
+            </div>
           </div>
         </a>
       </article>
@@ -45,21 +74,34 @@ title: 首页
       </div>
       {% endif %}
     </div>
-
-    {% if site.posts.size > 8 %}
-    <div class="view-archive">
-      <a href="{{ '/archive/' | relative_url }}">查看全部文章</a>
-    </div>
-    {% endif %}
   </section>
 </main>
 
 <!-- 底部信息 -->
 <footer class="home-footer">
-  <div class="footer-nav">
-    <a href="{{ '/about/' | relative_url }}">关于</a>
-    <a href="{{ '/archive/' | relative_url }}">归档</a>
-    <a href="https://github.com/HgnGoning" target="_blank" rel="noopener">GitHub</a>
+  <div class="footer-content">
+    <div class="footer-nav">
+      <a href="{{ '/about/' | relative_url }}" class="footer-nav-item">
+        <span class="nav-icon">👤</span>
+        <span>关于</span>
+      </a>
+      <a href="{{ '/archive/' | relative_url }}" class="footer-nav-item">
+        <span class="nav-icon">📚</span>
+        <span>归档</span>
+      </a>
+      <a href="{{ '/diary/' | relative_url }}" class="footer-nav-item">
+        <span class="nav-icon">📝</span>
+        <span>日记</span>
+      </a>
+      <a href="https://github.com/HgnGoning" target="_blank" rel="noopener" class="footer-nav-item">
+        <span class="nav-icon">💻</span>
+        <span>GitHub</span>
+      </a>
+    </div>
+    <p class="footer-note">
+      <span class="copyright">© {{ 'now' | date: "%Y" }} TTDB</span>
+      <span class="footer-divider">|</span>
+      <span class="powered">用 ❤️ 记录</span>
+    </p>
   </div>
-  <p class="footer-note">{{ site.title }} · {{ 'now' | date: "%Y" }}</p>
 </footer>
