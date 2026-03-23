@@ -1,5 +1,6 @@
 // ============================================
 // TTDB 设计系统 - 基础样式
+// 极简艺术风格 · 柔和灰色调
 // ============================================
 
 // 重置样式
@@ -19,7 +20,7 @@ html {
 body {
   font-family: var(--font-sans);
   font-size: var(--font-size-base);
-  line-height: 1.7;
+  line-height: 1.8;
   color: var(--color-text);
   background-color: var(--color-bg);
   -webkit-font-smoothing: antialiased;
@@ -27,7 +28,7 @@ body {
   transition: background-color var(--transition-base), color var(--transition-base);
 }
 
-// 排版
+// 排版 - 标题使用衬线体
 h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-serif);
   font-weight: 600;
@@ -35,6 +36,7 @@ h1, h2, h3, h4, h5, h6 {
   margin-top: var(--spacing-xl);
   margin-bottom: var(--spacing-md);
   color: var(--color-text);
+  letter-spacing: -0.01em;
 }
 
 h1 { font-size: var(--font-size-4xl); }
@@ -43,6 +45,11 @@ h3 { font-size: var(--font-size-2xl); }
 h4 { font-size: var(--font-size-xl); }
 h5 { font-size: var(--font-size-lg); }
 h6 { font-size: var(--font-size-base); }
+
+// 首个标题不需要上边距
+h1:first-child, h2:first-child, h3:first-child {
+  margin-top: 0;
+}
 
 p {
   margin-bottom: var(--spacing-md);
@@ -53,14 +60,13 @@ a {
   color: var(--color-link);
   text-decoration: none;
   transition: color var(--transition-fast);
-  position: relative;
 
   &:hover {
     color: var(--color-link-hover);
   }
 
   &:focus-visible {
-    outline: 2px solid var(--color-accent);
+    outline: 1px solid var(--color-text-muted);
     outline-offset: 2px;
   }
 }
@@ -75,14 +81,13 @@ ul, ol {
   }
 }
 
-// 引用
+// 引用 - 极简风格
 blockquote {
   margin: var(--spacing-lg) 0;
   padding: var(--spacing-md) var(--spacing-lg);
-  border-left: 3px solid var(--color-accent);
-  background-color: var(--color-bg-secondary);
-  font-style: italic;
+  border-left: 2px solid var(--color-text-muted);
   color: var(--color-text-secondary);
+  font-style: normal;
 
   p:last-child {
     margin-bottom: 0;
@@ -92,8 +97,8 @@ blockquote {
 // 代码
 code {
   font-family: var(--font-mono);
-  font-size: 0.9em;
-  padding: 0.2em 0.5em;
+  font-size: 0.875em;
+  padding: 0.15em 0.4em;
   background-color: var(--color-code-bg);
   border-radius: var(--radius-sm);
   -webkit-font-smoothing: antialiased;
@@ -130,7 +135,6 @@ hr {
 img {
   max-width: 100%;
   height: auto;
-  border-radius: var(--radius-md);
 }
 
 // 表格
@@ -142,22 +146,22 @@ table {
 
   th, td {
     padding: var(--spacing-sm) var(--spacing-md);
-    border: 1px solid var(--color-border);
+    border-bottom: 1px solid var(--color-border);
     text-align: left;
   }
 
   th {
-    background-color: var(--color-bg-secondary);
     font-weight: 600;
+    color: var(--color-text-secondary);
   }
 
-  tr:nth-child(even) {
-    background-color: var(--color-bg-secondary);
+  tr:last-child td {
+    border-bottom: none;
   }
 }
 
 // 选中文本
 ::selection {
-  background-color: var(--color-accent);
-  color: white;
+  background-color: var(--color-text-muted);
+  color: var(--color-bg);
 }

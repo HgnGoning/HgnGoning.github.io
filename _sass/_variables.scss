@@ -1,78 +1,94 @@
 // ============================================
 // TTDB 设计系统 - 变量定义
+// 极简艺术风格 · 柔和灰色调 · 克制个性
 // ============================================
 
-// 颜色系统
+// 亮色主题
 :root {
-  // 亮色主题
-  --color-bg: #fefefe;
-  --color-bg-secondary: #f8f8f8;
-  --color-text: #1a1a1a;
-  --color-text-secondary: #666666;
-  --color-text-muted: #999999;
-  --color-border: #e8e8e8;
-  --color-accent: #2d7d9a;
-  --color-accent-light: #4a9cb8;
-  --color-link: #2d7d9a;
-  --color-link-hover: #1a5a70;
-  --color-code-bg: #f4f4f4;
-  --color-shadow: rgba(0, 0, 0, 0.08);
+  // 核心色彩 - 柔和的暖灰色调
+  --color-bg: #fafaf9;
+  --color-bg-secondary: #f5f5f4;
+  --color-text: #1c1917;
+  --color-text-secondary: #57534e;
+  --color-text-muted: #a8a29e;
+  --color-border: #e7e5e4;
+
+  // 强调色 - 低饱和度的茶色/暖金
+  --color-accent: #78716c;
+  --color-accent-light: #a8a29e;
+  --color-accent-dark: #44403c;
+
+  // 链接
+  --color-link: #57534e;
+  --color-link-hover: #1c1917;
+
+  // 代码
+  --color-code-bg: #f5f5f4;
+
+  // 卡片与阴影 - 极简风格减少阴影
+  --color-shadow: rgba(28, 25, 23, 0.04);
   --color-card-bg: #ffffff;
 
-  // 字体
-  --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-  --font-serif: "Noto Serif SC", "Source Han Serif SC", Georgia, serif;
-  // 苹果风格代码字体
-  --font-mono: "SF Mono", "Monaco", "Menlo", "Consolas", "Courier New", monospace;
+  // 字体系统
+  // 标题使用衬线体 - 文艺气质
+  --font-serif: "Noto Serif SC", "Source Han Serif SC", "LXGW WenKai", Georgia, serif;
+  // 正文使用无衬线体 - 清晰可读
+  --font-sans: "Noto Sans SC", "Source Han Sans SC", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  // 代码字体
+  --font-mono: "JetBrains Mono", "SF Mono", "Monaco", "Menlo", Consolas, monospace;
 
-  // 字号
-  --font-size-xs: 0.75rem;
-  --font-size-sm: 0.875rem;
-  --font-size-base: 1rem;
-  --font-size-lg: 1.125rem;
-  --font-size-xl: 1.25rem;
-  --font-size-2xl: 1.5rem;
-  --font-size-3xl: 2rem;
-  --font-size-4xl: 2.5rem;
+  // 字号 - 强化层级对比
+  --font-size-xs: 0.6875rem;    // 11px
+  --font-size-sm: 0.8125rem;    // 13px
+  --font-size-base: 0.9375rem;  // 15px
+  --font-size-lg: 1.0625rem;    // 17px
+  --font-size-xl: 1.375rem;     // 22px
+  --font-size-2xl: 1.75rem;     // 28px
+  --font-size-3xl: 2.25rem;     // 36px
+  --font-size-4xl: 3rem;        // 48px
 
-  // 间距
-  --spacing-xs: 0.25rem;
-  --spacing-sm: 0.5rem;
-  --spacing-md: 1rem;
-  --spacing-lg: 1.5rem;
-  --spacing-xl: 2rem;
-  --spacing-2xl: 3rem;
-  --spacing-3xl: 4rem;
+  // 间距 - 更宽松的留白
+  --spacing-xs: 0.375rem;
+  --spacing-sm: 0.75rem;
+  --spacing-md: 1.25rem;
+  --spacing-lg: 2rem;
+  --spacing-xl: 3rem;
+  --spacing-2xl: 4.5rem;
+  --spacing-3xl: 6rem;
 
-  // 圆角
-  --radius-sm: 4px;
-  --radius-md: 8px;
-  --radius-lg: 12px;
+  // 圆角 - 更克制，接近直角
+  --radius-sm: 2px;
+  --radius-md: 4px;
+  --radius-lg: 6px;
   --radius-full: 9999px;
 
-  // 过渡
-  --transition-fast: 150ms ease;
-  --transition-base: 250ms ease;
-  --transition-slow: 400ms ease;
+  // 过渡 - 更快、更微妙
+  --transition-fast: 100ms ease;
+  --transition-base: 200ms ease;
+  --transition-slow: 300ms ease;
 
-  // 最大宽度
-  --max-width: 720px;
-  --header-height: 64px;
+  // 布局
+  --max-width: 680px;
+  --header-height: 72px;
 }
 
-// 暗色主题
+// 深色主题 - 真正的墨色
 [data-theme="dark"] {
-  --color-bg: #0f0f0f;
-  --color-bg-secondary: #1a1a1a;
-  --color-text: #e8e8e8;
-  --color-text-secondary: #a8a8a8;
-  --color-text-muted: #666666;
-  --color-border: #2a2a2a;
-  --color-accent: #4a9cb8;
-  --color-accent-light: #6ab8d4;
-  --color-link: #4a9cb8;
-  --color-link-hover: #6ab8d4;
-  --color-code-bg: #1a1a1a;
-  --color-shadow: rgba(0, 0, 0, 0.3);
-  --color-card-bg: #161616;
+  --color-bg: #0c0a09;
+  --color-bg-secondary: #1c1917;
+  --color-text: #fafaf9;
+  --color-text-secondary: #d6d3d1;
+  --color-text-muted: #78716c;
+  --color-border: #292524;
+
+  --color-accent: #a8a29e;
+  --color-accent-light: #d6d3d1;
+  --color-accent-dark: #57534e;
+
+  --color-link: #d6d3d1;
+  --color-link-hover: #fafaf9;
+
+  --color-code-bg: #1c1917;
+  --color-shadow: rgba(0, 0, 0, 0.2);
+  --color-card-bg: #171412;
 }
