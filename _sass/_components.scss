@@ -366,16 +366,21 @@
 .diary-calendar-container {
   max-width: 560px;
   margin: 0 auto;
+  padding: var(--spacing-lg);
+  background-color: var(--color-card-bg);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
 }
 
 .calendar-header {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: var(--spacing-xl);
-  padding: var(--spacing-lg);
+  margin-bottom: var(--spacing-lg);
+  padding: var(--spacing-md) var(--spacing-lg);
   background-color: var(--color-bg-secondary);
   border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
 }
 
 .calendar-title {
@@ -384,7 +389,7 @@
   font-weight: 600;
   color: var(--color-text);
   margin: 0;
-  letter-spacing: 0.02em;
+  letter-spacing: 0.01em;
 }
 
 .calendar-nav-btn {
@@ -392,7 +397,7 @@
   height: 36px;
   border-radius: var(--radius-full);
   border: 1px solid var(--color-border);
-  background-color: var(--color-card-bg);
+  background-color: transparent;
   color: var(--color-text-muted);
   cursor: pointer;
   display: flex;
@@ -403,6 +408,7 @@
   &:hover:not(:disabled) {
     color: var(--color-text);
     border-color: var(--color-text-muted);
+    background-color: var(--color-card-bg);
   }
 
   &:disabled {
@@ -415,6 +421,7 @@
   margin-bottom: var(--spacing-xl);
   background-color: var(--color-card-bg);
   border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
   padding: var(--spacing-lg);
 }
 
@@ -433,6 +440,7 @@
     color: var(--color-text-muted);
     padding: var(--spacing-xs) 0;
     text-transform: uppercase;
+    letter-spacing: 0.04em;
   }
 }
 
@@ -463,6 +471,7 @@
 
   &.has-diary {
     background-color: var(--color-bg-secondary);
+    box-shadow: inset 0 0 0 1px var(--color-border);
 
     .day-link {
       display: flex;
@@ -498,6 +507,7 @@
 .diary-list-section {
   background-color: var(--color-card-bg);
   border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
   padding: var(--spacing-lg);
 }
 
@@ -514,19 +524,22 @@
 .diary-list {
   display: flex;
   flex-direction: column;
-  gap: 1px;
+  gap: var(--spacing-xs);
 }
 
 .diary-item {
   display: flex;
   align-items: flex-start;
   gap: var(--spacing-md);
-  padding: var(--spacing-sm) 0;
+  padding: var(--spacing-md) var(--spacing-xs);
+  border-radius: var(--radius-sm);
   text-decoration: none;
   color: inherit;
   transition: all var(--transition-fast);
 
   &:hover {
+    background-color: var(--color-bg-secondary);
+
     .diary-item-date {
       color: var(--color-text);
     }
@@ -537,7 +550,7 @@
   font-size: var(--font-size-base);
   font-weight: 600;
   color: var(--color-text-muted);
-  min-width: 40px;
+  min-width: 44px;
   font-family: var(--font-mono);
   transition: color var(--transition-fast);
 }
@@ -545,7 +558,7 @@
 .diary-item-excerpt {
   font-size: var(--font-size-sm);
   color: var(--color-text-secondary);
-  line-height: 1.6;
+  line-height: 1.7;
   flex: 1;
 }
 
@@ -554,14 +567,17 @@
   color: var(--color-text-muted);
   text-align: center;
   padding: var(--spacing-lg);
+  background-color: var(--color-bg-secondary);
+  border-radius: var(--radius-md);
 }
 
 // 日记详情页
 .diary-header {
   text-align: center;
-  padding: var(--spacing-xl) 0;
+  padding: var(--spacing-xl) 0 var(--spacing-lg);
   margin-bottom: var(--spacing-xl);
   border-bottom: 1px solid var(--color-border);
+  box-shadow: inset 0 -1px 0 0 var(--color-bg-secondary);
 }
 
 .diary-date {
@@ -577,16 +593,16 @@
   font-size: var(--font-size-xs);
   color: var(--color-text-muted);
   text-transform: uppercase;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.08em;
 }
 
 .diary-content {
   font-size: var(--font-size-base);
-  line-height: 2;
+  line-height: 1.9;
   color: var(--color-text);
 
   p {
-    margin-bottom: var(--spacing-md);
+    margin-bottom: var(--spacing-lg);
     text-indent: 2em;
   }
 }
@@ -599,6 +615,7 @@
   padding-top: var(--spacing-lg);
   margin-top: var(--spacing-xl);
   border-top: 1px solid var(--color-border);
+  box-shadow: inset 0 1px 0 0 var(--color-bg-secondary);
 }
 
 .diary-nav-link {
@@ -610,11 +627,13 @@
   text-decoration: none;
   padding: var(--spacing-sm) var(--spacing-md);
   border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
   transition: all var(--transition-fast);
 
   &:hover:not(.disabled) {
     color: var(--color-text);
     border-color: var(--color-text-muted);
+    background-color: var(--color-bg-secondary);
   }
 
   &.disabled {
