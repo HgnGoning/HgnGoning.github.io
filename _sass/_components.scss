@@ -48,6 +48,11 @@
   &.active {
     color: var(--color-text);
   }
+
+  &.active {
+    text-decoration: underline;
+    text-underline-offset: 0.3em;
+  }
 }
 
 .header-actions {

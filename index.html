@@ -40,7 +40,7 @@ title: 首页
         <div class="post-content">
           <h3 class="post-title">{{ post.title }}</h3>
           {% if post.excerpt %}
-          <p class="post-excerpt">{{ post.excerpt | strip_html | truncatewords: 15 }}</p>
+          <p class="post-excerpt">{{ post.excerpt | strip_html | truncatewords: site.excerpt_words }}</p>
           {% endif %}
         </div>
       </a>

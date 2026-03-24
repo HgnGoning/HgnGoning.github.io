@@ -65,6 +65,9 @@ exclude:
 include:
   - _pages
 
+# 文章摘要长度
+excerpt_words: 15
+
 # 日记集合
 collections:
   diaries:
